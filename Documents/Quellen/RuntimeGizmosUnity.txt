@@ -1,0 +1,4 @@
+https://github.com/HiddenMonk/Unity3DRuntimeTransformGizmo
+
+Fork that works in unity package manager:
+https://github.com/cyrilBoucher/Unity3DRuntimeTransformGizmo/tree/feature/upm-package

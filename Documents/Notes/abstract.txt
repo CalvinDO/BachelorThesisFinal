@@ -1,0 +1,1 @@
+NeuroEvolution of Augmenting Topologies ist ein genetischer Algorithmus zur Evolvierung neuronaler Netze. Diese Arbeit untersucht, mit welchen Inputs, Outputs, Fitnessfunktionen und Hyperparametern benutzerdefinierte 3D-Kreaturen Laufen lernen.

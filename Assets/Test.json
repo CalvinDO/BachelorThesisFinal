@@ -1,0 +1,884 @@
+{
+    "position": {
+        "x": 0.0,
+        "y": 1.7999999523162842,
+        "z": 0.0
+    },
+    "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+    },
+    "dockingBalls": [
+        {
+            "position": {
+                "x": 0.0,
+                "y": 1.7999999523162842,
+                "z": -0.07519999891519547
+            },
+            "rotation": {
+                "x": -9.735359185469861e-8,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "availableDockingPoints": [
+                {
+                    "instanceID": -1768
+                },
+                {
+                    "instanceID": -1756
+                },
+                {
+                    "instanceID": -1760
+                },
+                {
+                    "instanceID": -1764
+                },
+                {
+                    "instanceID": -1772
+                },
+                {
+                    "instanceID": -1780
+                },
+                {
+                    "instanceID": -1788
+                },
+                {
+                    "instanceID": -1792
+                },
+                {
+                    "instanceID": -1796
+                },
+                {
+                    "instanceID": -1800
+                },
+                {
+                    "instanceID": -1804
+                },
+                {
+                    "instanceID": -1808
+                },
+                {
+                    "instanceID": -1812
+                },
+                {
+                    "instanceID": -1816
+                },
+                {
+                    "instanceID": -1824
+                },
+                {
+                    "instanceID": -1828
+                },
+                {
+                    "instanceID": -1832
+                },
+                {
+                    "instanceID": -1836
+                },
+                {
+                    "instanceID": -1840
+                },
+                {
+                    "instanceID": -1844
+                },
+                {
+                    "instanceID": -1848
+                },
+                {
+                    "instanceID": -1852
+                },
+                {
+                    "instanceID": -1860
+                },
+                {
+                    "instanceID": -1864
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 1.7999999523162842,
+                "z": 0.07519999891519547
+            },
+            "rotation": {
+                "x": -9.735359185469861e-8,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "availableDockingPoints": [
+                {
+                    "instanceID": -1884
+                },
+                {
+                    "instanceID": -1888
+                },
+                {
+                    "instanceID": -1892
+                },
+                {
+                    "instanceID": -1896
+                },
+                {
+                    "instanceID": -1904
+                },
+                {
+                    "instanceID": -1908
+                },
+                {
+                    "instanceID": -1912
+                },
+                {
+                    "instanceID": -1920
+                },
+                {
+                    "instanceID": -1924
+                },
+                {
+                    "instanceID": -1928
+                },
+                {
+                    "instanceID": -1932
+                },
+                {
+                    "instanceID": -1936
+                },
+                {
+                    "instanceID": -1940
+                },
+                {
+                    "instanceID": -1944
+                },
+                {
+                    "instanceID": -1948
+                },
+                {
+                    "instanceID": -1956
+                },
+                {
+                    "instanceID": -1960
+                },
+                {
+                    "instanceID": -1964
+                },
+                {
+                    "instanceID": -1968
+                },
+                {
+                    "instanceID": -1972
+                },
+                {
+                    "instanceID": -1976
+                },
+                {
+                    "instanceID": -1980
+                },
+                {
+                    "instanceID": -1984
+                },
+                {
+                    "instanceID": -1992
+                },
+                {
+                    "instanceID": -1996
+                }
+            ]
+        }
+    ],
+    "ballDocketAt": {
+        "instanceID": 0
+    },
+    "isDockedLimb": false,
+    "childLimbs": [
+        {
+            "position": {
+                "x": -0.07500004023313523,
+                "y": 1.7999999523162842,
+                "z": -0.07519999891519547
+            },
+            "rotation": {
+                "x": 6.883938397095335e-8,
+                "y": 0.70710688829422,
+                "z": -6.883939818180807e-8,
+                "w": -0.7071067690849304
+            },
+            "dockingBalls": [
+                {
+                    "position": {
+                        "x": -0.15020006895065309,
+                        "y": 1.7999999523162842,
+                        "z": -0.07520002126693726
+                    },
+                    "rotation": {
+                        "x": 6.883938397095335e-8,
+                        "y": 0.70710688829422,
+                        "z": -6.883939818180807e-8,
+                        "w": -0.7071067690849304
+                    },
+                    "availableDockingPoints": [
+                        {
+                            "instanceID": -133696
+                        },
+                        {
+                            "instanceID": -133700
+                        },
+                        {
+                            "instanceID": -133704
+                        },
+                        {
+                            "instanceID": -133712
+                        },
+                        {
+                            "instanceID": -133716
+                        },
+                        {
+                            "instanceID": -133720
+                        },
+                        {
+                            "instanceID": -133728
+                        },
+                        {
+                            "instanceID": -133732
+                        },
+                        {
+                            "instanceID": -133736
+                        },
+                        {
+                            "instanceID": -133740
+                        },
+                        {
+                            "instanceID": -133744
+                        },
+                        {
+                            "instanceID": -133748
+                        },
+                        {
+                            "instanceID": -133752
+                        },
+                        {
+                            "instanceID": -133756
+                        },
+                        {
+                            "instanceID": -133764
+                        },
+                        {
+                            "instanceID": -133768
+                        },
+                        {
+                            "instanceID": -133772
+                        },
+                        {
+                            "instanceID": -133776
+                        },
+                        {
+                            "instanceID": -133780
+                        },
+                        {
+                            "instanceID": -133784
+                        },
+                        {
+                            "instanceID": -133788
+                        },
+                        {
+                            "instanceID": -133792
+                        },
+                        {
+                            "instanceID": -133800
+                        },
+                        {
+                            "instanceID": -133804
+                        }
+                    ]
+                },
+                {
+                    "position": {
+                        "x": -0.3006001114845276,
+                        "y": 1.7999999523162842,
+                        "z": -0.07520007342100144
+                    },
+                    "rotation": {
+                        "x": 6.883938397095335e-8,
+                        "y": 0.70710688829422,
+                        "z": -6.883939818180807e-8,
+                        "w": -0.7071067690849304
+                    },
+                    "availableDockingPoints": [
+                        {
+                            "instanceID": -133828
+                        },
+                        {
+                            "instanceID": -133832
+                        },
+                        {
+                            "instanceID": -133836
+                        },
+                        {
+                            "instanceID": -133844
+                        },
+                        {
+                            "instanceID": -133848
+                        },
+                        {
+                            "instanceID": -133852
+                        },
+                        {
+                            "instanceID": -133860
+                        },
+                        {
+                            "instanceID": -133864
+                        },
+                        {
+                            "instanceID": -133868
+                        },
+                        {
+                            "instanceID": -133872
+                        },
+                        {
+                            "instanceID": -133876
+                        },
+                        {
+                            "instanceID": -133880
+                        },
+                        {
+                            "instanceID": -133884
+                        },
+                        {
+                            "instanceID": -133888
+                        },
+                        {
+                            "instanceID": -133896
+                        },
+                        {
+                            "instanceID": -133900
+                        },
+                        {
+                            "instanceID": -133904
+                        },
+                        {
+                            "instanceID": -133908
+                        },
+                        {
+                            "instanceID": -133912
+                        },
+                        {
+                            "instanceID": -133916
+                        },
+                        {
+                            "instanceID": -133920
+                        },
+                        {
+                            "instanceID": -133924
+                        },
+                        {
+                            "instanceID": -133932
+                        },
+                        {
+                            "instanceID": -133936
+                        }
+                    ]
+                },
+                {
+                    "position": {
+                        "x": -0.4510001838207245,
+                        "y": 1.7999999523162842,
+                        "z": -0.0752001479268074
+                    },
+                    "rotation": {
+                        "x": 6.883938397095335e-8,
+                        "y": 0.70710688829422,
+                        "z": -6.883939818180807e-8,
+                        "w": -0.7071067690849304
+                    },
+                    "availableDockingPoints": [
+                        {
+                            "instanceID": -133960
+                        },
+                        {
+                            "instanceID": -133964
+                        },
+                        {
+                            "instanceID": -133968
+                        },
+                        {
+                            "instanceID": -133976
+                        },
+                        {
+                            "instanceID": -133980
+                        },
+                        {
+                            "instanceID": -133984
+                        },
+                        {
+                            "instanceID": -133992
+                        },
+                        {
+                            "instanceID": -133996
+                        },
+                        {
+                            "instanceID": -134000
+                        },
+                        {
+                            "instanceID": -134004
+                        },
+                        {
+                            "instanceID": -134008
+                        },
+                        {
+                            "instanceID": -134012
+                        },
+                        {
+                            "instanceID": -134016
+                        },
+                        {
+                            "instanceID": -134020
+                        },
+                        {
+                            "instanceID": -134028
+                        },
+                        {
+                            "instanceID": -134032
+                        },
+                        {
+                            "instanceID": -134036
+                        },
+                        {
+                            "instanceID": -134040
+                        },
+                        {
+                            "instanceID": -134044
+                        },
+                        {
+                            "instanceID": -134048
+                        },
+                        {
+                            "instanceID": -134052
+                        },
+                        {
+                            "instanceID": -134056
+                        },
+                        {
+                            "instanceID": -134064
+                        },
+                        {
+                            "instanceID": -134068
+                        }
+                    ]
+                },
+                {
+                    "position": {
+                        "x": -0.6014001965522766,
+                        "y": 1.7999999523162842,
+                        "z": -0.07520017772912979
+                    },
+                    "rotation": {
+                        "x": 6.883938397095335e-8,
+                        "y": 0.70710688829422,
+                        "z": -6.883939818180807e-8,
+                        "w": -0.7071067690849304
+                    },
+                    "availableDockingPoints": [
+                        {
+                            "instanceID": -134088
+                        },
+                        {
+                            "instanceID": -134092
+                        },
+                        {
+                            "instanceID": -134096
+                        },
+                        {
+                            "instanceID": -134100
+                        },
+                        {
+                            "instanceID": -134108
+                        },
+                        {
+                            "instanceID": -134112
+                        },
+                        {
+                            "instanceID": -134116
+                        },
+                        {
+                            "instanceID": -134124
+                        },
+                        {
+                            "instanceID": -134128
+                        },
+                        {
+                            "instanceID": -134132
+                        },
+                        {
+                            "instanceID": -134136
+                        },
+                        {
+                            "instanceID": -134140
+                        },
+                        {
+                            "instanceID": -134144
+                        },
+                        {
+                            "instanceID": -134148
+                        },
+                        {
+                            "instanceID": -134152
+                        },
+                        {
+                            "instanceID": -134160
+                        },
+                        {
+                            "instanceID": -134164
+                        },
+                        {
+                            "instanceID": -134168
+                        },
+                        {
+                            "instanceID": -134172
+                        },
+                        {
+                            "instanceID": -134176
+                        },
+                        {
+                            "instanceID": -134180
+                        },
+                        {
+                            "instanceID": -134184
+                        },
+                        {
+                            "instanceID": -134188
+                        },
+                        {
+                            "instanceID": -134200
+                        }
+                    ]
+                }
+            ],
+            "ballDocketAt": {
+                "instanceID": -1736
+            },
+            "isDockedLimb": true,
+            "childLimbs": [
+                {
+                    "position": {
+                        "x": -0.6014003157615662,
+                        "y": 1.875,
+                        "z": -0.07520017772912979
+                    },
+                    "rotation": {
+                        "x": 0.4999998211860657,
+                        "y": 0.5000003576278687,
+                        "z": 0.4999997913837433,
+                        "w": -0.5000001788139343
+                    },
+                    "dockingBalls": [
+                        {
+                            "position": {
+                                "x": -0.6014004945755005,
+                                "y": 1.9501999616622925,
+                                "z": -0.07520017772912979
+                            },
+                            "rotation": {
+                                "x": 0.4999998211860657,
+                                "y": 0.5000003576278687,
+                                "z": 0.4999997913837433,
+                                "w": -0.5000001788139343
+                            },
+                            "availableDockingPoints": [
+                                {
+                                    "instanceID": -134672
+                                },
+                                {
+                                    "instanceID": -134676
+                                },
+                                {
+                                    "instanceID": -134680
+                                },
+                                {
+                                    "instanceID": -134688
+                                },
+                                {
+                                    "instanceID": -134692
+                                },
+                                {
+                                    "instanceID": -134696
+                                },
+                                {
+                                    "instanceID": -134704
+                                },
+                                {
+                                    "instanceID": -134708
+                                },
+                                {
+                                    "instanceID": -134712
+                                },
+                                {
+                                    "instanceID": -134716
+                                },
+                                {
+                                    "instanceID": -134720
+                                },
+                                {
+                                    "instanceID": -134724
+                                },
+                                {
+                                    "instanceID": -134728
+                                },
+                                {
+                                    "instanceID": -134732
+                                },
+                                {
+                                    "instanceID": -134740
+                                },
+                                {
+                                    "instanceID": -134744
+                                },
+                                {
+                                    "instanceID": -134748
+                                },
+                                {
+                                    "instanceID": -134752
+                                },
+                                {
+                                    "instanceID": -134756
+                                },
+                                {
+                                    "instanceID": -134760
+                                },
+                                {
+                                    "instanceID": -134764
+                                },
+                                {
+                                    "instanceID": -134768
+                                },
+                                {
+                                    "instanceID": -134776
+                                },
+                                {
+                                    "instanceID": -134780
+                                }
+                            ]
+                        },
+                        {
+                            "position": {
+                                "x": -0.6014006733894348,
+                                "y": 2.100600004196167,
+                                "z": -0.07520023733377457
+                            },
+                            "rotation": {
+                                "x": 0.4999998211860657,
+                                "y": 0.5000003576278687,
+                                "z": 0.4999997913837433,
+                                "w": -0.5000001788139343
+                            },
+                            "availableDockingPoints": [
+                                {
+                                    "instanceID": -134804
+                                },
+                                {
+                                    "instanceID": -134808
+                                },
+                                {
+                                    "instanceID": -134812
+                                },
+                                {
+                                    "instanceID": -134820
+                                },
+                                {
+                                    "instanceID": -134824
+                                },
+                                {
+                                    "instanceID": -134828
+                                },
+                                {
+                                    "instanceID": -134836
+                                },
+                                {
+                                    "instanceID": -134840
+                                },
+                                {
+                                    "instanceID": -134844
+                                },
+                                {
+                                    "instanceID": -134848
+                                },
+                                {
+                                    "instanceID": -134852
+                                },
+                                {
+                                    "instanceID": -134856
+                                },
+                                {
+                                    "instanceID": -134860
+                                },
+                                {
+                                    "instanceID": -134864
+                                },
+                                {
+                                    "instanceID": -134872
+                                },
+                                {
+                                    "instanceID": -134876
+                                },
+                                {
+                                    "instanceID": -134880
+                                },
+                                {
+                                    "instanceID": -134884
+                                },
+                                {
+                                    "instanceID": -134888
+                                },
+                                {
+                                    "instanceID": -134892
+                                },
+                                {
+                                    "instanceID": -134896
+                                },
+                                {
+                                    "instanceID": -134900
+                                },
+                                {
+                                    "instanceID": -134908
+                                },
+                                {
+                                    "instanceID": -134912
+                                }
+                            ]
+                        },
+                        {
+                            "position": {
+                                "x": -0.6014008522033691,
+                                "y": 2.250999927520752,
+                                "z": -0.07520023733377457
+                            },
+                            "rotation": {
+                                "x": 0.4999998211860657,
+                                "y": 0.5000003576278687,
+                                "z": 0.4999997913837433,
+                                "w": -0.5000001788139343
+                            },
+                            "availableDockingPoints": [
+                                {
+                                    "instanceID": -134932
+                                },
+                                {
+                                    "instanceID": -134936
+                                },
+                                {
+                                    "instanceID": -134940
+                                },
+                                {
+                                    "instanceID": -134944
+                                },
+                                {
+                                    "instanceID": -134952
+                                },
+                                {
+                                    "instanceID": -134956
+                                },
+                                {
+                                    "instanceID": -134960
+                                },
+                                {
+                                    "instanceID": -134968
+                                },
+                                {
+                                    "instanceID": -134972
+                                },
+                                {
+                                    "instanceID": -134976
+                                },
+                                {
+                                    "instanceID": -134980
+                                },
+                                {
+                                    "instanceID": -134984
+                                },
+                                {
+                                    "instanceID": -134988
+                                },
+                                {
+                                    "instanceID": -134992
+                                },
+                                {
+                                    "instanceID": -134996
+                                },
+                                {
+                                    "instanceID": -135004
+                                },
+                                {
+                                    "instanceID": -135008
+                                },
+                                {
+                                    "instanceID": -135012
+                                },
+                                {
+                                    "instanceID": -135016
+                                },
+                                {
+                                    "instanceID": -135020
+                                },
+                                {
+                                    "instanceID": -135024
+                                },
+                                {
+                                    "instanceID": -135028
+                                },
+                                {
+                                    "instanceID": -135032
+                                },
+                                {
+                                    "instanceID": -135040
+                                },
+                                {
+                                    "instanceID": -135044
+                                }
+                            ]
+                        }
+                    ],
+                    "ballDocketAt": {
+                        "instanceID": -134072
+                    },
+                    "isDockedLimb": true,
+                    "childLimbs": [],
+                    "rotationData": {
+                        "rotationalFreedom": 0,
+                        "minMaxRotationX": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "minMaxRotationY": {
+                            "x": 0.0,
+                            "y": 0.0
+                        }
+                    }
+                }
+            ],
+            "rotationData": {
+                "rotationalFreedom": 0,
+                "minMaxRotationX": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "minMaxRotationY": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            }
+        }
+    ],
+    "rotationData": {
+        "rotationalFreedom": 0,
+        "minMaxRotationX": {
+            "x": 0.0,
+            "y": 0.0
+        },
+        "minMaxRotationY": {
+            "x": 0.0,
+            "y": 0.0
+        }
+    }
+}

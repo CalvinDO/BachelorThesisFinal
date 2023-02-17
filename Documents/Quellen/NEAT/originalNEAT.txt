@@ -1,0 +1,10 @@
+Evolving Neural Networks through Augmenting Topologies - by Kenneth O. Stanley and Risto Miikkulainen
+
+
+Nicht accessable von der HFU???
+This content is outside your institutional subscription.
+https://ieeexplore.ieee.org/abstract/document/6790655
+
+
+cite:
+K. O. Stanley and R. Miikkulainen, "Evolving Neural Networks through Augmenting Topologies," in Evolutionary Computation, vol. 10, no. 2, pp. 99-127, June 2002, doi: 10.1162/106365602320169811.

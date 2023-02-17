@@ -1,0 +1,12 @@
+Learning to walk - reward relevance within an enhanced neuroevolution approach
+https://dl.acm.org/doi/abs/10.1145/3377929.3398126?casa_token=0-K_2OQ7JRsAAAAA:b1-dwnFPCXnP0oFJMUAFB1UsHBc76sI35qz6dS2TTsjvkSHtwjk4QwKG2bdf5kedx8QgbSrC8l4
+
+Constructing controllers for physical multilegged robots using the ENSO neuroevolution approach
+https://link.springer.com/article/10.1007/s12065-011-0067-y
+
+Exploiting inherent regularity in control of multilegged robot locomotion by evolving neural fields
+https://ieeexplore.ieee.org/abstract/document/6089623?casa_token=O3viqTKB8bkAAAAA:NLcKMY3eE3JkVf8qeTBW9IqNpfoCj0ntNCZnCnmk3Ft_TXcuZJS-gWFMsTX1fLgk_6ZEyajP
+
+
+Modular neuroevolution for multilegged locomotion
+https://dl.acm.org/doi/abs/10.1145/1389095.1389136?casa_token=ecrbSqcD1tIAAAAA:8z9Ll49W3QX293fwKzrC5-7ePeo1BK0VR9YbIl4uGQdCDCCkfaJp2TmzBguZGB-pCC46KtLAGdk
