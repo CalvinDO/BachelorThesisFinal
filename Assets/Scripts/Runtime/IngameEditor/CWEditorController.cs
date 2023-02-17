@@ -376,6 +376,8 @@ public class CWEditorController : MonoBehaviour {
 
         string deserializedLimbString = File.ReadAllText(currentPath);
 
+        this.UpdateSlotDisplay();
+
         this.currentLoadIndex++;
 
         currentPath = Application.dataPath + "/SavedCreatures/" + this.currentLoadIndex + ".json";
@@ -395,8 +397,12 @@ public class CWEditorController : MonoBehaviour {
 
         this.startingLimb = deserializedStartingLimb;
 
+    }
+
+    private void UpdateSlotDisplay() {
         this.slotDisplay.text = "Current Slot: " + this.currentLoadIndex;
     }
+
 
     private void SwitchScene(GameObject physicalCreature) {
 

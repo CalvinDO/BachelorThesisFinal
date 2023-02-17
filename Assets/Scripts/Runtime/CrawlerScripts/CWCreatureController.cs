@@ -214,7 +214,7 @@ public class CWCreatureController : MonoBehaviour {
 
             this.Fitness += avgVelXZ.z * Time.deltaTime;
             this.Fitness += absAvgPosZ * Time.deltaTime - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f * Time.deltaTime;
-            this.Fitness -= (float)Math.Pow(Math.Abs(this.angleBodyForward), 2) * Time.deltaTime;
+            this.Fitness -= (float)Math.Pow(Math.Abs(this.angleBodyForward), 2) * 10 * Time.deltaTime;
 
         }
         else {
