@@ -11,6 +11,9 @@ public class CWEditorLimbData {
     public Quaternion rotation;
 
     public CWEditorDockingBallData[] dockingBalls;
+    private int dockingDirectionIndex;
+
+
     public int ballDocketAtIndex;
     public bool isDockedLimb;
 
@@ -231,10 +234,13 @@ public class CWEditorLimb : MonoBehaviour {
             currentDockingSpherePos = this.transform.position + this.transform.TransformDirection(Vector3.forward) * CWEditorLimb.segment_length * sphereIndex;
             currentDockingSpherePos -= this.transform.TransformDirection(Vector3.forward) * CWEditorLimb.segment_length / 2f;
 
-            this.dockingBalls[sphereIndex - 1] = Instantiate(this.dockingBallPrefab, currentDockingSpherePos, this.transform.rotation, this.transform);
-            this.dockingBalls[sphereIndex - 1].RemoveBackLookingDockingPoint();
+            this.dockingBalls[sphereIndex - 1] = Instantiate(this.dockingBallPrefab, currentDockingSpherePos, Quaternion.identity, this.transform);
+
+            int currentBuildingDockingPointIndex = Array.IndexOf(CWEditorController.instance.currentBuildingDockingBall.availableDockingPoints, CWEditorController.instance.currentBuildingDockingPoint);
+
+            this.dockingBalls[sphereIndex - 1].RemoveBackLookingDockingPoint(currentBuildingDockingPointIndex);
             if (sphereIndex != amountSegments) {
-                this.dockingBalls[sphereIndex - 1].RemoveFrontLookingDockingPoint();
+                this.dockingBalls[sphereIndex - 1].RemoveFrontLookingDockingPoint(currentBuildingDockingPointIndex);
             }
         }
     }
@@ -251,8 +257,11 @@ public class CWEditorLimb : MonoBehaviour {
 
     private void FinishBuilding(int amountSegments) {
 
-        this.InstantiateDockingBalls(amountSegments);
 
+        CWEditorController.instance.RemoveCurrentBuildingDockingPoint();
+
+        this.InstantiateDockingBalls(amountSegments);
+           
         //this.RemoveInnerBackLookingDockingPoint();
         //this.RemoveOuterBackLookingDockingPoint();
         //this.RemoveInnerFrontLookingDockingPoint();
@@ -261,11 +270,11 @@ public class CWEditorLimb : MonoBehaviour {
     }
 
     private void RemoveInnerBackLookingDockingPoint() {
-        this.dockingBalls[^1].RemoveBackLookingDockingPoint();
+        this.dockingBalls[^1].RemoveDefaultBackLookingDockingPoint();
     }
 
     private void RemoveInnerFrontLookingDockingPoint() {
-        this.dockingBalls[0].RemoveFrontLookingDockingPoint();
+        this.dockingBalls[0].RemoveDefaultFrontLookingDockingPoint();
     }
 
     public void SetParentLimb(CWEditorLimb _parent) {

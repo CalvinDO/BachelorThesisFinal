@@ -62,6 +62,10 @@ public class CWEditorController : MonoBehaviour {
 
     public TextMeshProUGUI slotDisplay;
 
+
+    public CWEditorDockingBall currentBuildingDockingBall;
+    public Transform currentBuildingDockingPoint;
+
     void Awake() {
         CWEditorController.instance = this;
     }
@@ -303,10 +307,14 @@ public class CWEditorController : MonoBehaviour {
         */
     }
 
+    public void RemoveCurrentBuildingDockingPoint() {
+        this.currentBuildingDockingBall.RemoveAvailableDockingPoint(this.currentBuildingDockingPoint);
+    }
+
     void HandleLimbHit(RaycastHit hit) {
 
         CWEditorDockingBall hitDockingBall = hit.transform.GetComponent<CWEditorDockingBall>();
-
+           
         Transform closestDockingPointTransform = hitDockingBall.GetClosestDockingPoint(hit.point);
 
         Vector3 dockingPosition = closestDockingPointTransform.position;
@@ -321,7 +329,8 @@ public class CWEditorController : MonoBehaviour {
 
             this.DockLimb(dockingPosition, dockingRotation, hitDockingBall.limb, hitDockingBall.transform);
 
-            hitDockingBall.RemoveAvailableDockingPoint(closestDockingPointTransform);
+            this.currentBuildingDockingBall = hitDockingBall;
+            this.currentBuildingDockingPoint = closestDockingPointTransform;
 
             SetStateBuildingLimb();
         }

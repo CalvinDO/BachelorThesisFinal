@@ -25,6 +25,7 @@ public class CWEditorDockingBall : MonoBehaviour {
 
     private List<int> removedIndizes;
 
+    public Transform[] oppositeSiteDockingPoints;
 
     void Awake() {
 
@@ -88,11 +89,20 @@ public class CWEditorDockingBall : MonoBehaviour {
         this.availableDockingPoints = tempList.ToArray();
     }
 
-    public void RemoveBackLookingDockingPoint() {
+    public void RemoveBackLookingDockingPoint(int currentBuildingDockingPointIndex) {
+        Debug.Log(this.oppositeSiteDockingPoints[currentBuildingDockingPointIndex]);
+        this.RemoveAvailableDockingPoint(this.oppositeSiteDockingPoints[currentBuildingDockingPointIndex]);
+    }
+
+    public void RemoveFrontLookingDockingPoint(int currentBuildingDockingPointIndex) {
+        this.RemoveAvailableDockingPointPerIndex(currentBuildingDockingPointIndex);
+    }
+
+    public void RemoveDefaultBackLookingDockingPoint() {
         this.RemoveAvailableDockingPoint(this.backLookingDockingPoint);
     }
 
-    public void RemoveFrontLookingDockingPoint() {
+    public void RemoveDefaultFrontLookingDockingPoint() {
         this.RemoveAvailableDockingPoint(this.frontLookingDockingPoint);
     }
 
