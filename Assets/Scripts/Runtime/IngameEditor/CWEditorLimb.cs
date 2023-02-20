@@ -236,6 +236,8 @@ public class CWEditorLimb : MonoBehaviour {
 
             this.dockingBalls[sphereIndex - 1] = Instantiate(this.dockingBallPrefab, currentDockingSpherePos, Quaternion.identity, this.transform);
 
+
+
             int currentBuildingDockingPointIndex = Array.IndexOf(CWEditorController.instance.currentBuildingDockingBall.availableDockingPoints, CWEditorController.instance.currentBuildingDockingPoint);
 
             this.dockingBalls[sphereIndex - 1].RemoveBackLookingDockingPoint(currentBuildingDockingPointIndex);
@@ -257,10 +259,9 @@ public class CWEditorLimb : MonoBehaviour {
 
     private void FinishBuilding(int amountSegments) {
 
+        this.InstantiateDockingBalls(amountSegments);
 
         CWEditorController.instance.RemoveCurrentBuildingDockingPoint();
-
-        this.InstantiateDockingBalls(amountSegments);
            
         //this.RemoveInnerBackLookingDockingPoint();
         //this.RemoveOuterBackLookingDockingPoint();

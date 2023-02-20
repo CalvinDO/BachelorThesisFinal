@@ -81,7 +81,7 @@ public class CWEditorDockingBall : MonoBehaviour {
 
     public void RemoveAvailableDockingPointPerIndex(int index) {
         List<Transform> tempList = new List<Transform>(this.availableDockingPoints);
-        
+
         tempList.RemoveAt(index);
 
         this.removedIndizes.Add(index);
@@ -90,7 +90,10 @@ public class CWEditorDockingBall : MonoBehaviour {
     }
 
     public void RemoveBackLookingDockingPoint(int currentBuildingDockingPointIndex) {
+
+        Debug.Log(currentBuildingDockingPointIndex);
         Debug.Log(this.oppositeSiteDockingPoints[currentBuildingDockingPointIndex]);
+
         this.RemoveAvailableDockingPoint(this.oppositeSiteDockingPoints[currentBuildingDockingPointIndex]);
     }
 
