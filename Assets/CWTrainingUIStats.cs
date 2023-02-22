@@ -20,6 +20,12 @@ public class CWTrainingUIStats : MonoBehaviour {
 
     float maxWaveTime = 10;
 
+    public static CWTrainingUIStats instance;
+
+    void Awake() {
+        CWTrainingUIStats.instance = this;
+    }
+
     void Start() {
 
         this.UpdateMaxTimeDisplay();

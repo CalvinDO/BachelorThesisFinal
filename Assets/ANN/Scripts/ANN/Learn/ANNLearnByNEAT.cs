@@ -369,6 +369,9 @@ public class ANNLearnByNEAT
         Child = new GameObject[ChildrenInWaveMustBe];
         ChildN = new ANN[ChildrenInWaveMustBe];
         ChildCrash = new bool[ChildrenInWaveMustBe];
+
+        Debug.Log(BestLongevity);
+
         Longevity = new float[ChildrenInWaveMustBe];
 
         int i = 0;

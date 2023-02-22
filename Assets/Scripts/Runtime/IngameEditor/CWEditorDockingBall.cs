@@ -19,9 +19,9 @@ public class CWEditorDockingBall : MonoBehaviour {
     public CWEditorLimb limb;
 
     [SerializeField]
-    private Transform backLookingDockingPoint;
+    public Transform backLookingDockingPoint;
     [SerializeField]
-    private Transform frontLookingDockingPoint;
+    public Transform frontLookingDockingPoint;
 
     private List<int> removedIndizes;
 
@@ -80,6 +80,7 @@ public class CWEditorDockingBall : MonoBehaviour {
     }
 
     public void RemoveAvailableDockingPointPerIndex(int index) {
+
         List<Transform> tempList = new List<Transform>(this.availableDockingPoints);
 
         tempList.RemoveAt(index);

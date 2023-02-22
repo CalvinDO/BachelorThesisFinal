@@ -10,8 +10,10 @@ public class GroundContact : MonoBehaviour {
     public bool touchingGround;
 
     void OnCollisionStay(Collision other) {
+
         this.touchingGround = true;
 
+        return;
         if (this.penalizeGroundContact) {
             this.crawlerController.Fitness += this.groundContactPenalty;
         }

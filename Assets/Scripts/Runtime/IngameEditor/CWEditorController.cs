@@ -314,7 +314,7 @@ public class CWEditorController : MonoBehaviour {
     void HandleLimbHit(RaycastHit hit) {
 
         CWEditorDockingBall hitDockingBall = hit.transform.GetComponent<CWEditorDockingBall>();
-           
+
         Transform closestDockingPointTransform = hitDockingBall.GetClosestDockingPoint(hit.point);
 
         Vector3 dockingPosition = closestDockingPointTransform.position;

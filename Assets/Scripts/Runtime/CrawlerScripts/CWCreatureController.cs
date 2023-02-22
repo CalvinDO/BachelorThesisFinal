@@ -93,11 +93,11 @@ public class CWCreatureController : MonoBehaviour {
                 }
 
 
-                this.inputs = amountMovableBodyParts * 5 + 5;
+                this.inputs = amountMovableBodyParts * 3 + 5;
                 break;
 
             default:
-                break;
+                break; ;
         }
 
 
@@ -213,7 +213,12 @@ public class CWCreatureController : MonoBehaviour {
             // this.Fitness = 1 + absAvgPosZ - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f;
 
             this.Fitness += avgVelXZ.z * Time.deltaTime;
-            this.Fitness += absAvgPosZ * Time.deltaTime - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, float.MinValue, 10) * 0.1f * Time.deltaTime;
+            this.Fitness += absAvgPosZ * Time.deltaTime - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f * Time.deltaTime;
+
+            if (avgPosXZ.z < 0.2f) {
+                this.Fitness -= 10 * Time.deltaTime;
+            }
+
             this.Fitness -= (float)Math.Pow(Math.Abs(this.angleBodyForward), 2) * 10 * Time.deltaTime;
 
         }
@@ -246,6 +251,9 @@ public class CWCreatureController : MonoBehaviour {
         this.Inputs[this.sensorIndex++] = angleTweenBodyAndForward;
 
         this.totalCoM = this.GetTotalCoM();
+
+
+        this.CollectObservationBodyPartOptimized(this.m_JdController.bodyPartsDict[this.body]);
 
         for (int partIndex = 0; partIndex < this.bodyParts.Length; partIndex++) {
             this.CollectObservationBodyPartOptimized(this.m_JdController.bodyPartsDict[this.bodyParts[partIndex]]);
@@ -371,6 +379,15 @@ public class CWCreatureController : MonoBehaviour {
     private void CollectObservationBodyPartOptimized(BodyPart bodyPart) {
 
 
+        if (bodyPart.rb.transform == this.m_JdController.bodyPartsDict[this.body].rb.transform) {
+
+            if (bodyPart.rb.transform.up.y < 0) {
+                this.Fitness -= float.MaxValue;
+            }
+
+            return;
+        }
+
         if (bodyPart.rotationalFreedom == CWRotationInterfaceRotationalFreedom.Nothing) {
             return;
         }
@@ -402,8 +419,8 @@ public class CWCreatureController : MonoBehaviour {
         this.Inputs[this.sensorIndex++] = tanH(sizeRelativeDistanceToCOM.x);
         this.Inputs[this.sensorIndex++] = tanH(sizeRelativeDistanceToCOM.z);
 
-        this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentXNormalizedRot);
-        this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentYNormalizedRot);
+        //this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentXNormalizedRot);
+        //this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentYNormalizedRot);
 
 
         /*
