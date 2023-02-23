@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781c0e73d2f6af74ea09cfff07883a3c, type: 3}
   m_Name: New CW Training Configuration 3
   m_EditorClassIdentifier: 
-  inputType: 1
-  outputType: 0
+  inputType: 0
   delinearizationType: 1
-  fitnessFunctionType: 0
   hyperparameterType: 1
+  fitnessFunctionType: 0
+  outputType: 0

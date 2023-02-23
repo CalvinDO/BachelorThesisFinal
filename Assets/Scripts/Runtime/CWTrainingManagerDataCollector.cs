@@ -69,6 +69,16 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
         }
     }
 
+
+    public CWTrainingConfiguration GetCurrentTrainingConfiguration() {
+        try {
+            return this.trainingConfigurations[this.currentConfigurationIndex];
+        }
+        catch (Exception e) {
+            return this.trainingConfigurations[0];
+        }
+    }
+
     void Start() {
 
         this.trainingDataResults = new CWTrainingDataResults();
@@ -150,6 +160,7 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
 
             this.WriteTempBatchDataToResults();
 
+            this.WriteResultsToFile();
 
             this.currentBatchIndex++;
         }

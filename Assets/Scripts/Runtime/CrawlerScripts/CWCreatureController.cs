@@ -197,7 +197,7 @@ public class CWCreatureController : MonoBehaviour {
 
     private void CalculateFitness() {
 
-        if (!this.fitnessSetToZPosOnly) {
+        if (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().fitnessFunctionType == CWTrainingConfiguration.CWTrainingFitnessFunctionType.alsoPunishX) {
             this.Fitness += Time.deltaTime;
         }
 
@@ -205,31 +205,34 @@ public class CWCreatureController : MonoBehaviour {
         Vector3 avgVelXZ = Vector3.ProjectOnPlane(this.GetAvgVelocity(), Vector3.up);
 
 
-        if (!this.fitnessSetToZPosOnly) {
-            //this.LifeTime += (avgPosXZ.z > 0 ? Mathf.Pow(avgPosXZ.z, 2) : 0) * 10 * Time.deltaTime;
+        switch (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().fitnessFunctionType) {
 
-            //this.LifeTime += (avgPosXZ.z > 0 ? avgPosXZ.z : 0) * 10 * Time.deltaTime;
+            case CWTrainingConfiguration.CWTrainingFitnessFunctionType.alsoPunishX:
 
-            //this.LifeTime += avgVelXZ.z * Time.deltaTime;  /*> 0 ? this.GetAvgVelocity().z * 10 * Time.deltaTime : 0*/;
+                //this.LifeTime += (avgPosXZ.z > 0 ? Mathf.Pow(avgPosXZ.z, 2) : 0) * 10 * Time.deltaTime;
 
-            float absAvgPosZ = Math.Abs(avgPosXZ.z);
+                //this.LifeTime += (avgPosXZ.z > 0 ? avgPosXZ.z : 0) * 10 * Time.deltaTime;
 
-            //this.LifeTime -= Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 5) * Time.deltaTime;
+                //this.LifeTime += avgVelXZ.z * Time.deltaTime;  /*> 0 ? this.GetAvgVelocity().z * 10 * Time.deltaTime : 0*/;
 
-            // this.Fitness = 1 + absAvgPosZ - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f;
+                float absAvgPosZ = Math.Abs(avgPosXZ.z);
 
-            this.Fitness += avgVelXZ.z * Time.deltaTime;
-            this.Fitness += absAvgPosZ * Time.deltaTime - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f * Time.deltaTime;
+                //this.LifeTime -= Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 5) * Time.deltaTime;
 
-            if (avgPosXZ.z < 0.2f) {
-                this.Fitness -= 10 * Time.deltaTime;
-            }
+                // this.Fitness = 1 + absAvgPosZ - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f;
 
-            this.Fitness -= (float)Math.Pow(Math.Abs(this.angleBodyForward), 2) * 10 * Time.deltaTime;
+                this.Fitness += avgVelXZ.z * Time.deltaTime;
+                this.Fitness += absAvgPosZ * Time.deltaTime - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f * Time.deltaTime;
 
-        }
-        else {
-            this.Fitness = 1 + avgPosXZ.z;
+                if (avgPosXZ.z < 0.2f) {
+                    this.Fitness -= 10 * Time.deltaTime;
+                }
+
+                this.Fitness -= (float)Math.Pow(Math.Abs(this.angleBodyForward), 2) * 10 * Time.deltaTime;
+                break;
+            case CWTrainingConfiguration.CWTrainingFitnessFunctionType.zPosOnly:
+                this.Fitness = 1 + avgPosXZ.z;
+                break;
         }
     }
 
@@ -401,53 +404,49 @@ public class CWCreatureController : MonoBehaviour {
             return;
         }
 
-        //Vector3 avgVel = this.GetAvgVelocity();
-        //Vector3 differenceVel = bodyPart.rb.velocity - this.m_JdController.bodyPartsDict[this.body].rb.velocity;
+        switch (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().inputType) {
 
-        Vector3 distanceToCoM = bodyPart.rb.transform.position - this.totalCoM;
+            case CWTrainingConfiguration.CWTrainingInputType.comDistances:
 
-        Vector3 sizeRelativeDistanceToCOM = distanceToCoM / this.maxDistanceToCOM;
+                Vector3 distanceToCoM = bodyPart.rb.transform.position - this.totalCoM;
 
-        /*
-        if (bodyPart.rb.transform == this.body) {
+                Vector3 sizeRelativeDistanceToCOM = distanceToCoM / this.maxDistanceToCOM;
 
-            this.Inputs[this.sensorIndex++] = (float)Math.Tanh(differenceVel.x);
-            this.Inputs[this.sensorIndex++] = (float)Math.Tanh(differenceVel.y);
-            this.Inputs[this.sensorIndex++] = (float)Math.Tanh(differenceVel.z);
+                this.Inputs[this.sensorIndex++] = tanH(sizeRelativeDistanceToCOM.x);
+                this.Inputs[this.sensorIndex++] = tanH(sizeRelativeDistanceToCOM.z);
 
+                this.Inputs[this.sensorIndex++] = tanH(bodyPart.rb.transform.position.y / this.maxDistanceToCOM);
+
+                break;
+            case CWTrainingConfiguration.CWTrainingInputType.velocityDifferences:
+
+                //Vector3 avgVel = this.GetAvgVelocity();
+                Vector3 differenceVel = bodyPart.rb.velocity - this.m_JdController.bodyPartsDict[this.body].rb.velocity;
+
+                this.Inputs[this.sensorIndex++] = tanH(differenceVel.x / this.maxDistanceToCOM);
+                this.Inputs[this.sensorIndex++] = tanH(differenceVel.y / this.maxDistanceToCOM);
+                this.Inputs[this.sensorIndex++] = tanH(differenceVel.z / this.maxDistanceToCOM);
+                break;
         }
-        */
 
-        //Vector3 avgVel = this.GetAvgVelocity();
-
-
-        //bodyPart.rb.velo
-
-        //currently without tanH
-
-        this.Inputs[this.sensorIndex++] = tanH(sizeRelativeDistanceToCOM.x);
-        this.Inputs[this.sensorIndex++] = tanH(sizeRelativeDistanceToCOM.z);
 
         //this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentXNormalizedRot);
         //this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentYNormalizedRot);
-
-
-        /*
-         this.Inputs[this.sensorIndex++] = sizeRelativeDistanceToCOM.y;
-         this.Inputs[this.sensorIndex++] = sizeRelativeDistanceToCOM.z;
-          */
-        this.Inputs[this.sensorIndex++] = tanH(bodyPart.rb.transform.position.y / this.maxDistanceToCOM);
-        /*
-
-        this.Inputs[this.sensorIndex++] = (float)Math.Tanh(bodyPart.rb.angularVelocity.x);
-        this.Inputs[this.sensorIndex++] = (float)Math.Tanh(bodyPart.rb.angularVelocity.y);
-        this.Inputs[this.sensorIndex++] = (float)Math.Tanh(bodyPart.rb.angularVelocity.z);
-       */
-        //this.Inputs[this.sensorIndex++] = force.z * 100;
     }
 
     private float tanH(float value) {
-        return (float)Math.Tanh(value);
+
+        switch (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().delinearizationType) {
+
+            case CWTrainingConfiguration.CWTrainingDelinearizationType.none:
+                return value;
+
+            case CWTrainingConfiguration.CWTrainingDelinearizationType.tanh:
+                return (float)Math.Tanh(value);
+
+            default:
+                return value;
+        }
     }
 
 

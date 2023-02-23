@@ -2,7 +2,99 @@
     "configurationsResults": [
         {
             "configuration": {
-                "instanceID": -15924
+                "instanceID": 231690
+            },
+            "creatureResults": [
+                {
+                    "name": "0",
+                    "batchResults": [
+                        {
+                            "index": 0,
+                            "wavesMaxDistances": [
+                                0.6779682040214539,
+                                0.679861843585968
+                            ]
+                        },
+                        {
+                            "index": 1,
+                            "wavesMaxDistances": [
+                                0.6281244158744812,
+                                0.5359095335006714
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "1",
+                    "batchResults": [
+                        {
+                            "index": 0,
+                            "wavesMaxDistances": [
+                                0.7791397571563721,
+                                0.8558818697929382
+                            ]
+                        },
+                        {
+                            "index": 1,
+                            "wavesMaxDistances": [
+                                1.4531917572021485,
+                                1.6387145519256592
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "configuration": {
+                "instanceID": 231702
+            },
+            "creatureResults": [
+                {
+                    "name": "0",
+                    "batchResults": [
+                        {
+                            "index": 0,
+                            "wavesMaxDistances": [
+                                2.427661180496216,
+                                2.39219331741333
+                            ]
+                        },
+                        {
+                            "index": 1,
+                            "wavesMaxDistances": [
+                                7.619762420654297,
+                                5.111528396606445
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "1",
+                    "batchResults": [
+                        {
+                            "index": 0,
+                            "wavesMaxDistances": [
+                                2.1698954105377199,
+                                4.711729049682617,
+                                3.5881593227386476
+                            ]
+                        },
+                        {
+                            "index": 1,
+                            "wavesMaxDistances": [
+                                2.3816494941711427,
+                                0.5737547874450684,
+                                2.7750887870788576
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "configuration": {
+                "instanceID": 231706
             },
             "creatureResults": [
                 {
@@ -23,24 +115,6 @@
                     "batchResults": []
                 }
             ]
-        },
-        {
-            "configuration": {
-                "instanceID": 0
-            },
-            "creatureResults": []
-        },
-        {
-            "configuration": {
-                "instanceID": 0
-            },
-            "creatureResults": []
-        },
-        {
-            "configuration": {
-                "instanceID": 0
-            },
-            "creatureResults": []
         },
         {
             "configuration": {

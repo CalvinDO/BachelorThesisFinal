@@ -12,28 +12,37 @@ public class CWTrainingConfiguration : ScriptableObject {
 
     [Serializable]
     public enum CWTrainingInputType {
-        firstType, secondType
+        comDistances = 0,
+        velocityDifferences = 1
     }
+
     [Serializable]
     public enum CWTrainingOutputType {
-        firstType, secondType
+        anglesOnly = 0,
+        anglesWithForces = 1
     }
+
     [Serializable]
     public enum CWTrainingDelinearizationType {
-        firstType, secondType
+        tanh = 0,
+        none = 1
     }
+
     [Serializable]
     public enum CWTrainingFitnessFunctionType {
-        firstType, secondType
+        zPosOnly = 0,
+        alsoPunishX = 1
     }
+
     [Serializable]
     public enum CWTrainingHyperparameterType {
-        firstType, secondType
+        crossingOf = 0,
+        crossingOn = 1
     }
 
     public CWTrainingInputType inputType;
-    public CWTrainingOutputType outputType;
     public CWTrainingDelinearizationType delinearizationType;
-    public CWTrainingFitnessFunctionType fitnessFunctionType;
     public CWTrainingHyperparameterType hyperparameterType;
+    public CWTrainingFitnessFunctionType fitnessFunctionType;
+    public CWTrainingOutputType outputType;
 }

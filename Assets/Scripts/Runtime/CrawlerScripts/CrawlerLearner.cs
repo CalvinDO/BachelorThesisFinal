@@ -29,7 +29,10 @@ public class CrawlerLearner : MonoBehaviour {
         this.networkLearnInterface.NL.ChildrenInWave = 13;
         this.networkLearnInterface.NL.ChanceCoefficient = 0.04f;
         this.networkLearnInterface.NL.ChangeWeightSign = 0.25f;
+
         this.networkLearnInterface.NL.Cross = false;
+        this.SyncCrossingWithDataCollector();
+
         this.networkLearnInterface.NL.PerceptronStart = true;
         this.networkLearnInterface.NL.ChildrenDifference = 1.26f;
         this.networkLearnInterface.NL.AddingWeightsCount = 2;
@@ -38,5 +41,24 @@ public class CrawlerLearner : MonoBehaviour {
         this.networkLearnInterface.NL.MutationChangeWeights = 22.73f / 1.25f;
         this.networkLearnInterface.NL.MutationAddNeuron = 31.82f / 1.25f;
         this.networkLearnInterface.NL.StudentData(creatureBrain.gameObject, creatureBrain, nameof(this.creatureBrain.Network), creatureController, nameof(this.creatureController.Death), nameof(this.creatureController.Fitness));
+    }
+
+    void Update() {
+        this.SyncCrossingWithDataCollector();
+    }
+
+    void SyncCrossingWithDataCollector() {
+
+        switch (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().hyperparameterType) {
+            case CWTrainingConfiguration.CWTrainingHyperparameterType.crossingOf:
+                this.networkLearnInterface.NL.Cross = false;
+                break;
+            case CWTrainingConfiguration.CWTrainingHyperparameterType.crossingOn:
+                this.networkLearnInterface.NL.Cross = true;
+                break;
+            default:
+                this.networkLearnInterface.NL.Cross = false;
+                break;
+        }
     }
 }

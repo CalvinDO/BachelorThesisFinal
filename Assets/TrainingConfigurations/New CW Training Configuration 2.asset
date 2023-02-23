@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: New CW Training Configuration 2
   m_EditorClassIdentifier: 
   inputType: 0
-  outputType: 1
   delinearizationType: 1
   fitnessFunctionType: 0
+  outputType: 0
   hyperparameterType: 0
