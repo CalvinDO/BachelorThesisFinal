@@ -221,7 +221,7 @@ public class CWCreatureController : MonoBehaviour {
                 this.Fitness += avgVelXZ.z * Time.deltaTime;
                 this.Fitness += absAvgPosZ * Time.deltaTime - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f * Time.deltaTime;
 
-                if (avgPosXZ.z < 0.2f) {
+                if (avgPosXZ.z < -0.2f) {
                     this.Fitness -= 10 * Time.deltaTime;
                 }
 
