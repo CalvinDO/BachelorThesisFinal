@@ -210,15 +210,12 @@ public class CWCreatureController : MonoBehaviour {
             case CWTrainingConfiguration.CWTrainingFitnessFunctionType.alsoPunishX:
 
                 //this.LifeTime += (avgPosXZ.z > 0 ? Mathf.Pow(avgPosXZ.z, 2) : 0) * 10 * Time.deltaTime;
-
                 //this.LifeTime += (avgPosXZ.z > 0 ? avgPosXZ.z : 0) * 10 * Time.deltaTime;
-
                 //this.LifeTime += avgVelXZ.z * Time.deltaTime;  /*> 0 ? this.GetAvgVelocity().z * 10 * Time.deltaTime : 0*/;
 
                 float absAvgPosZ = Math.Abs(avgPosXZ.z);
 
                 //this.LifeTime -= Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 5) * Time.deltaTime;
-
                 // this.Fitness = 1 + absAvgPosZ - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f;
 
                 this.Fitness += avgVelXZ.z * Time.deltaTime;
@@ -418,20 +415,26 @@ public class CWCreatureController : MonoBehaviour {
                 this.Inputs[this.sensorIndex++] = tanH(bodyPart.rb.transform.position.y / this.maxDistanceToCOM);
 
                 break;
-            case CWTrainingConfiguration.CWTrainingInputType.velocityDifferences:
+            case CWTrainingConfiguration.CWTrainingInputType.rotationalFactor:
 
                 //Vector3 avgVel = this.GetAvgVelocity();
-                Vector3 differenceVel = bodyPart.rb.velocity - this.m_JdController.bodyPartsDict[this.body].rb.velocity;
+                //Vector3 differenceVel = bodyPart.rb.velocity - this.m_JdController.bodyPartsDict[this.body].rb.velocity;
 
-                this.Inputs[this.sensorIndex++] = tanH(differenceVel.x / this.maxDistanceToCOM);
-                this.Inputs[this.sensorIndex++] = tanH(differenceVel.y / this.maxDistanceToCOM);
-                this.Inputs[this.sensorIndex++] = tanH(differenceVel.z / this.maxDistanceToCOM);
+
+                this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentXNormalizedRot);
+                this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentYNormalizedRot);
+
+                this.Inputs[this.sensorIndex++] = tanH(bodyPart.rb.transform.position.y / this.maxDistanceToCOM);
+
+                //this.Inputs[this.sensorIndex++] = tanH(differenceVel.x / this.maxDistanceToCOM);
+                //this.Inputs[this.sensorIndex++] = tanH(differenceVel.y / this.maxDistanceToCOM);
+                //this.Inputs[this.sensorIndex++] = tanH(differenceVel.z / this.maxDistanceToCOM);
+
                 break;
         }
 
 
-        //this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentXNormalizedRot);
-        //this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentYNormalizedRot);
+        
     }
 
     private float tanH(float value) {

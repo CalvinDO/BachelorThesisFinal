@@ -2574,7 +2574,6 @@ MonoBehaviour:
   creatures:
   - {fileID: 4900000, guid: b83cb15cef3f0bd43a2296ef168fa164, type: 3}
   - {fileID: 4900000, guid: 77d5439e9777b7c4c984852b663dec7f, type: 3}
-  - {fileID: 4900000, guid: b981a30d96c349545a38d7f452df2f68, type: 3}
   amountBatchesPerCreature: 3
   batchTime: 300
   currentConfigurationIndex: 0

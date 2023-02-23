@@ -13,7 +13,7 @@ public class CWTrainingConfiguration : ScriptableObject {
     [Serializable]
     public enum CWTrainingInputType {
         comDistances = 0,
-        velocityDifferences = 1
+        rotationalFactor = 1
     }
 
     [Serializable]

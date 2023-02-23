@@ -15,7 +15,7 @@ public class CWTrainingDataResults {
 [Serializable]
 public class CWTrainingConfigurationResultsData {
 
-    public CWTrainingConfiguration configuration;
+    public string configurationName;
 
     public CWTrainingCreatureResultsData[] creatureResults;
 }
@@ -125,11 +125,11 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
 
     IEnumerator RunConfiguration() {
 
-        Debug.Log("testing configuration: " + this.currentConfigurationIndex);
+        Debug.Log("testing configuration: " + this.currentConfigurationIndex + "  config name: " + this.trainingConfigurations[this.currentConfigurationIndex]);
 
 
         this.trainingDataResults.configurationsResults[this.currentConfigurationIndex] = new CWTrainingConfigurationResultsData();
-        this.trainingDataResults.configurationsResults[this.currentConfigurationIndex].configuration = this.trainingConfigurations[this.currentConfigurationIndex];
+        this.trainingDataResults.configurationsResults[this.currentConfigurationIndex].configurationName = this.trainingConfigurations[this.currentConfigurationIndex].name;
         this.trainingDataResults.configurationsResults[this.currentConfigurationIndex].creatureResults = new CWTrainingCreatureResultsData[this.creatures.Length];
 
         while (this.currentCreatureIndex < this.creatures.Length) {
