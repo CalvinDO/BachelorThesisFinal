@@ -15,7 +15,7 @@ public enum CWCreatureControllerInputMode {
 public class CWCreatureController : MonoBehaviour {
 
     [HideInInspector]
-    public CWCreatureBrain crawlerBrain;
+    public CWCreatureBrain creatureBrain;
 
     //[HideInInspector]
     public float[] Outputs;
@@ -40,9 +40,9 @@ public class CWCreatureController : MonoBehaviour {
 
     [Header("Network Configuration")]
     [HideInInspector]
-    public int inputs = 0;
+    public static int inputs = 0;
     [HideInInspector]
-    public int outputs = 0;
+    public static int outputs = 0;
 
     private float timeSinceStart = 0f;
 
@@ -66,8 +66,8 @@ public class CWCreatureController : MonoBehaviour {
 
         this.Fitness = 20;
 
-        this.inputs = 0;
-        this.outputs = 0;
+        CWCreatureController.inputs = 0;
+        CWCreatureController.outputs = 0;
 
         m_JdController = GetComponent<JointDriveController>();
 
@@ -77,12 +77,12 @@ public class CWCreatureController : MonoBehaviour {
 
             case CWCreatureControllerInputMode.Minimalistic:
 
-                this.inputs = (this.body == null ? 0 : 1) + this.bodyParts.Length * 1;
+                CWCreatureController.inputs = (this.body == null ? 0 : 1) + this.bodyParts.Length * 1;
                 break;
 
             case CWCreatureControllerInputMode.Experimental:
 
-                this.inputs = (this.body == null ? 0 : 1) + this.bodyParts.Length * 1 + 4 + 3;
+                CWCreatureController.inputs = (this.body == null ? 0 : 1) + this.bodyParts.Length * 1 + 4 + 3;
                 break;
             case CWCreatureControllerInputMode.ForcesApproach:
 
@@ -93,7 +93,7 @@ public class CWCreatureController : MonoBehaviour {
                 }
 
 
-                this.inputs = amountMovableBodyParts * 3 + 5;
+                CWCreatureController.inputs = amountMovableBodyParts * 3 + 6;
                 break;
 
             default:
@@ -101,14 +101,14 @@ public class CWCreatureController : MonoBehaviour {
         }
 
 
-        this.Inputs = new float[this.inputs];
+        this.Inputs = new float[CWCreatureController.inputs];
 
         //int outputs gets counted up in SetupBodyParts
-        this.Outputs = new float[this.outputs];
+        this.Outputs = new float[CWCreatureController.outputs];
 
-        this.crawlerBrain = this.GetComponent<CWCreatureBrain>();
+        this.creatureBrain = this.GetComponent<CWCreatureBrain>();
 
-        this.crawlerBrain.Init();
+        this.creatureBrain.Init();
 
 
         //this.m_JdController.bodyPartsDict[this.body].rb.inertiaTensor = new Vector3(0.1f, 0.01f, 0.1f);
@@ -139,7 +139,7 @@ public class CWCreatureController : MonoBehaviour {
             if (joint.transform != this.body) {
                 tempBodyParts.Add(joint.transform);
                 //+1 for strength!
-                this.outputs += this.m_JdController.SetupBodyPart(joint.transform); // + 1 for strength
+                CWCreatureController.outputs += this.m_JdController.SetupBodyPart(joint.transform); // + 1 for strength
             }
         }
 
@@ -147,7 +147,13 @@ public class CWCreatureController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        this.OutputOutputs();
+
+        try {
+            this.OutputOutputs();
+        }
+        catch (Exception e) {
+            Debug.Log(e.Message);
+        }
     }
 
     void Update() {
@@ -243,12 +249,16 @@ public class CWCreatureController : MonoBehaviour {
         float angleTweenAvgVAndForward = Vector3.SignedAngle(avgVel, Vector3.forward, Vector3.forward);
         float normalizedAngle = angleTweenAvgVAndForward / 180f;
 
+        //this.Inputs[this.sensorIndex++] = Vector3.Dot(Vector3.forward, )
         this.Inputs[this.sensorIndex++] = normalizedAngle;
 
         float angleTweenBodyAndForward = Vector3.SignedAngle(this.body.transform.forward, Vector3.forward, Vector3.forward) / 180f;
         this.angleBodyForward = angleTweenBodyAndForward;
 
-        this.Inputs[this.sensorIndex++] = angleTweenBodyAndForward;
+        this.Inputs[this.sensorIndex++] = Vector3.Dot(Vector3.forward, body.forward);
+        this.Inputs[this.sensorIndex++] = Vector3.Dot(Vector3.up, body.forward);
+
+        //this.Inputs[this.sensorIndex++] = angleTweenBodyAndForward;
 
         this.totalCoM = this.GetTotalCoM();
 
@@ -373,7 +383,6 @@ public class CWCreatureController : MonoBehaviour {
             }
         }
 
-        Debug.Log("estimated maxdisToCOM: " + this.maxDistanceToCOM);
     }
 
     private void CollectObservationBodyPartOptimized(BodyPart bodyPart) {

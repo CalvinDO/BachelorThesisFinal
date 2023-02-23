@@ -13,9 +13,20 @@ public class CWCreatureBrain : MonoBehaviour {
     private ANNInterface networkInterface;
 
 
+    public void Reset() {
+
+        if (this.networkInterface) {
+
+            Destroy(this.networkInterface);
+            this.Network = new ANN();
+        }
+
+    }
+
     public void Init() {
 
-        this.Network.Create(this.creatureController.inputs, this.creatureController.outputs);
+
+        this.Network.Create(CWCreatureController.inputs, CWCreatureController.outputs);
 
         this.networkInterface = this.gameObject.AddComponent<ANNInterface>();
         this.networkInterface.Ann = this.Network;
@@ -23,11 +34,19 @@ public class CWCreatureBrain : MonoBehaviour {
 
     void Update() {
 
-        this.Network.Input = this.creatureController.Inputs;
+        try {
 
-        this.Network.Solution();
+            this.Network.Input = this.creatureController.Inputs;
 
-        this.creatureController.Outputs = this.Network.Output;
+            this.Network.Solution();
+
+            this.creatureController.Outputs = this.Network.Output;
+        }
+        catch (Exception e) {
+
+            this.Network = null;
+            Debug.Log(e.Message);
+        }
     }
 
 }

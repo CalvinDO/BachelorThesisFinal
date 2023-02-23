@@ -122,8 +122,6 @@ public class CWEditorPhysicalCreatureFactory {
 
         CWCreatureBrain creatureBrain = creature.AddComponent<CWCreatureBrain>();
         creatureBrain.creatureController = creatureController;
-
-
     }
 
     private static void SetupConfigurableJoints(CWLimb physicalChildLimb, CWEditorLimb editorLimb) {

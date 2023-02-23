@@ -66,6 +66,7 @@ public class CWEditorController : MonoBehaviour {
     public CWEditorDockingBall currentBuildingDockingBall;
     public Transform currentBuildingDockingPoint;
 
+
     void Awake() {
         CWEditorController.instance = this;
     }
@@ -383,29 +384,35 @@ public class CWEditorController : MonoBehaviour {
 
         string currentPath = Application.dataPath + "/SavedCreatures/" + this.currentLoadIndex + ".json";
 
-        string deserializedLimbString = File.ReadAllText(currentPath);
-
         this.UpdateSlotDisplay();
+
 
         this.currentLoadIndex++;
 
-        currentPath = Application.dataPath + "/SavedCreatures/" + this.currentLoadIndex + ".json";
+        string increasedPath = Application.dataPath + "/SavedCreatures/" + this.currentLoadIndex + ".json";
 
-        if (!File.Exists(currentPath)) {
+        if (!File.Exists(increasedPath)) {
             this.currentLoadIndex = 0;
         }
+
+
+        GameObject.Destroy(this.startingLimb.gameObject);
+
+        this.startingLimb = CWEditorController.GetDeserializedLimbFromPath(currentPath);
+    }
+
+    public static CWEditorLimb GetDeserializedLimbFromPath(string currentPath) {
+
+        string deserializedLimbString = File.ReadAllText(currentPath);
 
         CWEditorLimbData newLimbData = new CWEditorLimbData();
 
         JsonUtility.FromJsonOverwrite(deserializedLimbString, newLimbData);
 
-        CWEditorLimb deserializedStartingLimb = GameObject.Instantiate(this.limb);
+        CWEditorLimb deserializedStartingLimb = GameObject.Instantiate(CWEditorController.instance.limb);
         deserializedStartingLimb.InsertDataDeserialize(newLimbData);
 
-        GameObject.Destroy(this.startingLimb.gameObject);
-
-        this.startingLimb = deserializedStartingLimb;
-
+        return deserializedStartingLimb;
     }
 
     private void UpdateSlotDisplay() {

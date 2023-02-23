@@ -114,6 +114,12 @@ public class ANNLearnByNEAT
     private ANN BestANN;
     private ANN AlmostBestANN;
 
+    public static ANNLearnByNEAT instance;
+
+    public void Init() {
+        ANNLearnByNEAT.instance = this;
+    }
+
     /// <summary>
     /// Chance to use mutations "add neuron".
     /// </summary>
@@ -157,7 +163,7 @@ public class ANNLearnByNEAT
     /// <summary>
     /// Chance to change sign of some weights.
     /// </summary>
-    public float ChangeWeightSign = 0;
+    public float ChangeWeightSign = 0; 
 
     /// <summary>
     /// Data collection for training.
@@ -350,6 +356,9 @@ public class ANNLearnByNEAT
                             }
                         }
                         Generation++;
+
+                        CWTrainingManagerDataCollector.instance.tempWavesMaxDistances.Add(CWTrainingUIStats.instance.maxDistance);
+
                         BestLongevityInGeneration = -Mathf.Infinity;
                         ChildrenOneByOneLeft = AmountOfChildren;
                     }
@@ -370,7 +379,6 @@ public class ANNLearnByNEAT
         ChildN = new ANN[ChildrenInWaveMustBe];
         ChildCrash = new bool[ChildrenInWaveMustBe];
 
-        Debug.Log(BestLongevity);
 
         Longevity = new float[ChildrenInWaveMustBe];
 

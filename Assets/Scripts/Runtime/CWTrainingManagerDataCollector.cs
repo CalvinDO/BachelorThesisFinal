@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-
-
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class CWTrainingDataResults {
@@ -55,10 +54,29 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
     public int currentCreatureIndex = 0;
     public int currentBatchIndex = 0;
 
+    public static CWTrainingManagerDataCollector instance;
+
+    public List<float> tempWavesMaxDistances;
+
+    void Awake() {
+        CWTrainingManagerDataCollector.instance = this;
+    }
+
+    void Update() {
+
+        if (Input.GetKeyUp(KeyCode.Space)) {
+            this.WriteResultsToFile();
+        }
+    }
 
     void Start() {
 
         this.trainingDataResults = new CWTrainingDataResults();
+
+        this.StartTesting();
+    }
+
+    public void StartTesting() {
 
         StartCoroutine(this.RunConfigurations());
     }
@@ -112,7 +130,7 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
             this.currentBatchIndex = 0;
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return null;//new WaitForSeconds(0.1f);
     }
 
     IEnumerator RunCreature() {
@@ -126,12 +144,32 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
 
         while (this.currentBatchIndex < this.amountBatchesPerCreature) {
 
+            this.ResetScene();
+
             yield return this.RunBatch();
+
+            this.WriteTempBatchDataToResults();
+
 
             this.currentBatchIndex++;
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return null; // new WaitForSeconds(0.1f);
+    }
+
+    public void WriteTempBatchDataToResults() {
+
+        this.trainingDataResults
+        .configurationsResults[this.currentConfigurationIndex]
+        .creatureResults[this.currentCreatureIndex]
+        .batchResults[this.currentBatchIndex]
+        .wavesMaxDistances = new List<float>();
+
+        this.trainingDataResults
+         .configurationsResults[this.currentConfigurationIndex]
+         .creatureResults[this.currentCreatureIndex]
+         .batchResults[this.currentBatchIndex]
+         .wavesMaxDistances.AddRange(this.tempWavesMaxDistances);
     }
 
     IEnumerator RunBatch() {
@@ -141,16 +179,35 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
         this.trainingDataResults.configurationsResults[this.currentConfigurationIndex].creatureResults[this.currentCreatureIndex].batchResults[this.currentBatchIndex] = new CWTrainingBatchData();
         this.trainingDataResults.configurationsResults[this.currentConfigurationIndex].creatureResults[this.currentCreatureIndex].batchResults[this.currentBatchIndex].index = this.currentBatchIndex;
 
-
-
-        this.trainingDataResults
-            .configurationsResults[this.currentConfigurationIndex]
-            .creatureResults[this.currentCreatureIndex]
-            .batchResults[this.currentBatchIndex]
-            .wavesMaxDistances
-            = new List<float>() { 0, 2, 30, 2, 11, 0 };
+        this.tempWavesMaxDistances = new List<float>();
 
 
         yield return new WaitForSeconds(this.batchTime);
+    }
+
+    public void ResetScene() {
+
+        ANNLearnByNEAT.instance.Reset();
+
+
+
+
+        Destroy(CWTrainingSceneManager.initialCreature.gameObject);
+        Destroy(CrawlerLearner.instance.networkLearnInterface);
+
+        CWEditorLimb temporaryEditorLimb = CWEditorController.GetDeserializedLimbFromPath
+            (Application.dataPath + "/SavedCreatures/" + this.currentCreatureIndex + ".json");
+
+        CWTrainingSceneManager.initialCreature
+            = CWEditorPhysicalCreatureFactory.GetPhysicalCreature(temporaryEditorLimb)
+            .GetComponent<CWCreatureController>();
+
+        Destroy(temporaryEditorLimb.gameObject);
+
+        CrawlerLearner.instance.Start();
+
+        CWTrainingUIStats.instance.Reset();
+
+        ANNLearnByNEATInterface.instance.Learn = true;
     }
 }

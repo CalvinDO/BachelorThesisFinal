@@ -23,6 +23,15 @@ public class ANNLearnByNEATInterface : MonoBehaviour
     private Rect WindowRect = new Rect(Screen.width, Screen.height, 580, 305);
     private bool Settings = true;
 
+    public static ANNLearnByNEATInterface instance;
+
+    void Awake() {
+
+        ANNLearnByNEATInterface.instance = this;
+
+        this.NL.Init();
+    }
+
     private void Start()
     {
         if (gameObject.name == "StudentChild")

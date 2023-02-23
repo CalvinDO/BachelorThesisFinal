@@ -16,9 +16,10 @@ public class CWTrainingUIStats : MonoBehaviour {
 
 
     float timeSinceStart = 0;
-    float maxDistance = 0f;
 
-    float maxWaveTime = 10;
+    public float maxDistance = 0f;
+
+    public float maxWaveTime = 5;
 
     public static CWTrainingUIStats instance;
 
@@ -32,6 +33,19 @@ public class CWTrainingUIStats : MonoBehaviour {
 
         this.SetCreaturesWaveTime();
     }
+
+
+    public void Reset() {
+
+        this.timeSinceStart = 0;
+
+        this.maxDistance = 0;
+
+        this.UpdateMaxDistanceDisplay();
+
+        this.SetCreaturesWaveTime();
+    }
+
 
     // Update is called once per frame
     void Update() {
@@ -59,16 +73,24 @@ public class CWTrainingUIStats : MonoBehaviour {
 
         CWCreatureController[] creatureControllers = GameObject.FindObjectsOfType<CWCreatureController>();
 
+
+        float currentMaxDistance = 0;
+
         foreach (CWCreatureController controller in creatureControllers) {
             float currentZ = controller.GetAvgPosition().z;
-            if (currentZ > this.maxDistance) {
-                this.maxDistance = currentZ;
+            if (currentZ > currentMaxDistance) {
+                currentMaxDistance = currentZ;
             }
         }
 
-        this.maxDistanceDisplay.text = this.maxDistance.ToString("#0.000") + "m";
+        this.maxDistance = currentMaxDistance;
+
+        this.UpdateMaxDistanceDisplay();
     }
 
+    public void UpdateMaxDistanceDisplay() {
+        this.maxDistanceDisplay.text = this.maxDistance.ToString("#0.000") + "m";
+    }
     public void SliderOnValueChanged(Slider slider) {
 
         this.maxWaveTime = slider.value;

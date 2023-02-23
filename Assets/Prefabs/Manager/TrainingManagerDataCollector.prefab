@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5793648530031204014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5793648530031204008}
+  - component: {fileID: 5793648530031204009}
+  m_Layer: 0
+  m_Name: TrainingManagerDataCollector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5793648530031204008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793648530031204014}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.75932, y: -0.27699876, z: -0.027123984}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5793648530031204009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793648530031204014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c06af0f37d3f24bb404958026334bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainingConfigurations:
+  - {fileID: 11400000, guid: 4facbd2b376349440ac0c5bf3523f599, type: 2}
+  - {fileID: 11400000, guid: fc283fe09b13f4745a17771c625aca8e, type: 2}
+  - {fileID: 11400000, guid: 342648bbce3293f438948afd9ea13db9, type: 2}
+  - {fileID: 11400000, guid: 3482942ba30de21499acd651341cd42e, type: 2}
+  - {fileID: 11400000, guid: 4e0216f8fc330a447bb1f3260f796732, type: 2}
+  creatures:
+  - {fileID: 4900000, guid: d3702444b31bde94d9e6b8d6646795fe, type: 3}
+  - {fileID: 4900000, guid: 2be34161aeb821e4681090989565771b, type: 3}
+  amountBatchesPerCreature: 5
+  batchTime: 5
+  currentConfigurationIndex: 0
+  currentCreatureIndex: 0
+  currentBatchIndex: 0
+  tempWavesMaxDistances: []

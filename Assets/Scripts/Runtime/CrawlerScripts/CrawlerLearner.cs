@@ -7,9 +7,16 @@ public class CrawlerLearner : MonoBehaviour {
     public CWCreatureController creatureController;
     public CWCreatureBrain creatureBrain;
 
-    private ANNLearnByNEATInterface networkLearnInterface;
+    [HideInInspector]
+    public ANNLearnByNEATInterface networkLearnInterface;
 
-    void Start() {
+    public static CrawlerLearner instance;
+
+    void Awake() {
+        CrawlerLearner.instance = this;
+    }
+
+    public void Start() {
 
         this.creatureController = FindObjectOfType<CWCreatureController>();
         this.creatureBrain = FindObjectOfType<CWCreatureBrain>();
@@ -27,7 +34,7 @@ public class CrawlerLearner : MonoBehaviour {
         this.networkLearnInterface.NL.ChildrenDifference = 1.26f;
         this.networkLearnInterface.NL.AddingWeightsCount = 2;
         this.networkLearnInterface.NL.MutationAddWeight = 17.94f / 1.25f;
-        this.networkLearnInterface.NL.MutationChangeOneWeight= 27.51f / 1.25f;
+        this.networkLearnInterface.NL.MutationChangeOneWeight = 27.51f / 1.25f;
         this.networkLearnInterface.NL.MutationChangeWeights = 22.73f / 1.25f;
         this.networkLearnInterface.NL.MutationAddNeuron = 31.82f / 1.25f;
         this.networkLearnInterface.NL.StudentData(creatureBrain.gameObject, creatureBrain, nameof(this.creatureBrain.Network), creatureController, nameof(this.creatureController.Death), nameof(this.creatureController.Fitness));
