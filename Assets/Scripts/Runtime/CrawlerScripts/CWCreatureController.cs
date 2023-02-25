@@ -93,7 +93,7 @@ public class CWCreatureController : MonoBehaviour {
                 }
 
 
-                CWCreatureController.inputs = amountMovableBodyParts * 3 + 6;
+                CWCreatureController.inputs = amountMovableBodyParts * 3 + 7;
                 break;
 
             default:
@@ -258,7 +258,7 @@ public class CWCreatureController : MonoBehaviour {
         this.Inputs[this.sensorIndex++] = Vector3.Dot(Vector3.forward, body.forward);
         this.Inputs[this.sensorIndex++] = Vector3.Dot(Vector3.up, body.forward);
 
-        //this.Inputs[this.sensorIndex++] = angleTweenBodyAndForward;
+        this.Inputs[this.sensorIndex++] = angleTweenBodyAndForward;
 
         this.totalCoM = this.GetTotalCoM();
 

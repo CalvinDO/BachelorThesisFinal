@@ -2573,13 +2573,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 46abba674b926654799e4dd0d9b2ed9a, type: 2}
   creatures:
   - {fileID: 4900000, guid: b83cb15cef3f0bd43a2296ef168fa164, type: 3}
-  - {fileID: 4900000, guid: 77d5439e9777b7c4c984852b663dec7f, type: 3}
-  amountBatchesPerCreature: 3
+  - {fileID: 4900000, guid: 3c829420d2f33504db04f36aeaf5a228, type: 3}
+  - {fileID: 4900000, guid: f616ccd90cb723e4ba20bc4d3cc1f389, type: 3}
+  - {fileID: 4900000, guid: ed13ea6588108d04f9b23baffcb79727, type: 3}
+  - {fileID: 4900000, guid: 4dba258ba844ac842b7f68416b94ba45, type: 3}
+  amountBatchesPerCreature: 5
   batchTime: 300
   currentConfigurationIndex: 0
   currentCreatureIndex: 0
   currentBatchIndex: 0
   tempWavesMaxDistances: []
+  testConfigurations: 1
 --- !u!1 &5793648530182810670
 GameObject:
   m_ObjectHideFlags: 0

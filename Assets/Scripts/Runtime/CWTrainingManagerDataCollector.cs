@@ -58,6 +58,8 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
 
     public List<float> tempWavesMaxDistances;
 
+    public bool testConfigurations;
+
     void Awake() {
         CWTrainingManagerDataCollector.instance = this;
     }
@@ -83,16 +85,16 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
 
         this.trainingDataResults = new CWTrainingDataResults();
 
-        this.StartTesting();
+        if (this.testConfigurations) {
+            this.StartTesting();
+        }
     }
 
     public void StartTesting() {
-
         StartCoroutine(this.RunConfigurations());
     }
 
     void WriteResultsToFile() {
-
 
         string json = JsonUtility.ToJson(this.trainingDataResults);
         Debug.Log(json);

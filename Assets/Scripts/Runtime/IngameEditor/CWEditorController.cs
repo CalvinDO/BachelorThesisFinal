@@ -251,6 +251,7 @@ public class CWEditorController : MonoBehaviour {
 
     private void AbortBuildingLimb() {
 
+        this.currentBuildingLimb.parentLimb.childLimbs.Remove(this.currentBuildingLimb);
         GameObject.Destroy(this.currentBuildingLimb.gameObject);
         this.currentBuildingLimb = null;
 

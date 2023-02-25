@@ -29,13 +29,16 @@ public class CWEditorDockingBall : MonoBehaviour {
 
     void Awake() {
 
+        for (int index = 0; index < this.availableDockingPoints.Length; index++) {
+            this.availableDockingPoints[index].tag = "" + index;
+        }
+
         this.removedIndizes = new List<int>();
 
         this.limb = this.GetComponentInParent<CWEditorLimb>();
     }
 
     void Start() {
-
     }
 
     // Update is called once per frame
@@ -91,10 +94,6 @@ public class CWEditorDockingBall : MonoBehaviour {
     }
 
     public void RemoveBackLookingDockingPoint(int currentBuildingDockingPointIndex) {
-
-        Debug.Log(currentBuildingDockingPointIndex);
-        Debug.Log(this.oppositeSiteDockingPoints[currentBuildingDockingPointIndex]);
-
         this.RemoveAvailableDockingPoint(this.oppositeSiteDockingPoints[currentBuildingDockingPointIndex]);
     }
 

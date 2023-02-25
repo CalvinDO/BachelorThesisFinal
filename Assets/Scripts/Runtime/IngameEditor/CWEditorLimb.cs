@@ -236,15 +236,16 @@ public class CWEditorLimb : MonoBehaviour {
 
             this.dockingBalls[sphereIndex - 1] = Instantiate(this.dockingBallPrefab, currentDockingSpherePos, Quaternion.identity, this.transform);
 
-
-            int currentBuildingDockingPointIndex = Array.IndexOf(CWEditorController.instance.currentBuildingDockingBall.availableDockingPoints, CWEditorController.instance.currentBuildingDockingPoint);
+            int currentBuildingDockingPointIndex = int.Parse(CWEditorController.instance.currentBuildingDockingPoint.tag);
+           // int currentBuildingDockingPointIndex =  Array.IndexOf(CWEditorController.instance.currentBuildingDockingBall.availableDockingPoints, CWEditorController.instance.currentBuildingDockingPoint);
 
             //Fix front DockingPoint at initial limb when docking
+            /*
             if (CWEditorController.instance.currentBuildingDockingPoint == CWEditorController.instance.currentBuildingDockingBall.frontLookingDockingPoint && !CWEditorController.instance.currentBuildingDockingBall.limb.isDockedLimb) {
                 currentBuildingDockingPointIndex = 1;
             }
-
-
+            */
+                
             if (sphereIndex != amountSegments) {
                 this.dockingBalls[sphereIndex - 1].RemoveFrontLookingDockingPoint(currentBuildingDockingPointIndex);
             }
