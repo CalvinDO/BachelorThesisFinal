@@ -2572,11 +2572,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b46a8ed64ad1c184e8deb9f5f31044e0, type: 2}
   - {fileID: 11400000, guid: 46abba674b926654799e4dd0d9b2ed9a, type: 2}
   creatures:
-  - {fileID: 4900000, guid: b83cb15cef3f0bd43a2296ef168fa164, type: 3}
-  - {fileID: 4900000, guid: 3c829420d2f33504db04f36aeaf5a228, type: 3}
-  - {fileID: 4900000, guid: f616ccd90cb723e4ba20bc4d3cc1f389, type: 3}
-  - {fileID: 4900000, guid: ed13ea6588108d04f9b23baffcb79727, type: 3}
-  - {fileID: 4900000, guid: 4dba258ba844ac842b7f68416b94ba45, type: 3}
+  - {fileID: 4900000, guid: d960b1f056b9bca44a64cbd85d25356b, type: 3}
+  - {fileID: 4900000, guid: 02a47484589b05e4d9b33dc190209cd3, type: 3}
+  - {fileID: 4900000, guid: 44e335a62ec26964ea04a1977695032c, type: 3}
+  - {fileID: 4900000, guid: b9dd09a3d8d36bd4590fc66e96ef4e96, type: 3}
+  - {fileID: 4900000, guid: 492126a338fdcd94ba9fea481b9bac6b, type: 3}
   amountBatchesPerCreature: 5
   batchTime: 300
   currentConfigurationIndex: 0
