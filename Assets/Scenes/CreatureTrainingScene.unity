@@ -2583,7 +2583,7 @@ MonoBehaviour:
   currentCreatureIndex: 0
   currentBatchIndex: 0
   tempWavesMaxDistances: []
-  testConfigurations: 1
+  testConfigurations: 0
 --- !u!1 &5793648530182810670
 GameObject:
   m_ObjectHideFlags: 0

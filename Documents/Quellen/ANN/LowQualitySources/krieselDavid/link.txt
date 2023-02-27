@@ -1,0 +1,4 @@
+german:
+https://www.dkriesel.com/_media/science/neuronalenetze-de-zeta2-2col-dkrieselcom.pdf
+
+http://www.dkriesel.com/en/science/neural_networks

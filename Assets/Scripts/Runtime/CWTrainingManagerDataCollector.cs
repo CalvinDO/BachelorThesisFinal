@@ -164,10 +164,16 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
 
             this.WriteResultsToFile();
 
+            this.SaveCreatureBrain();
+
             this.currentBatchIndex++;
         }
 
-        yield return null; // new WaitForSeconds(0.1f);
+        yield return null;
+    }
+
+    private void SaveCreatureBrain() {
+        ANNLearnByNEATInterface.instance.Ann.Save("Creature" + this.currentCreatureIndex + "Batch" + this.currentBatchIndex);
     }
 
     public void WriteTempBatchDataToResults() {
