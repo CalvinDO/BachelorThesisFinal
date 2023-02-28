@@ -30,7 +30,7 @@ public class CWTrainingConfiguration : ScriptableObject {
 
     [Serializable]
     public enum CWTrainingHyperparameterType {
-        crossingOf = 0,
+        crossingOff = 0,
         crossingOn = 1
     }
 

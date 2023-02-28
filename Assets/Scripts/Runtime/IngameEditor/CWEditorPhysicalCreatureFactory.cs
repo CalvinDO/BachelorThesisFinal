@@ -48,7 +48,8 @@ public class CWEditorPhysicalCreatureFactory {
     }
 
 
-    private static void CreateAttachChildLimb(CWLimb physicalParentLimb, CWEditorLimb editorChildLimb, bool parentUnderTransform) {
+    private static void CreateAttachChildLimb(CWLimb physicalParentLimb, 
+        CWEditorLimb editorChildLimb, bool parentUnderTransform) {
 
         if (editorChildLimb.isDockedLimb) {
 

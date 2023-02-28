@@ -49,12 +49,15 @@ public class CrawlerLearner : MonoBehaviour {
     void SyncCrossingWithDataCollector() {
 
         switch (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().hyperparameterType) {
-            case CWTrainingConfiguration.CWTrainingHyperparameterType.crossingOf:
+
+            case CWTrainingConfiguration.CWTrainingHyperparameterType.crossingOff:
                 this.networkLearnInterface.NL.Cross = false;
                 break;
+
             case CWTrainingConfiguration.CWTrainingHyperparameterType.crossingOn:
                 this.networkLearnInterface.NL.Cross = true;
                 break;
+
             default:
                 this.networkLearnInterface.NL.Cross = false;
                 break;

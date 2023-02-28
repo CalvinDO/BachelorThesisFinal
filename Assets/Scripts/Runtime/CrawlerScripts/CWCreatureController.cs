@@ -74,7 +74,7 @@ public class CWCreatureController : MonoBehaviour {
 
             amountMovableBodyParts +=
                 this.m_JdController.bodyPartsDict[this.bodyParts[bodyIndex]].rotationalFreedom
-                == CWRotationInterfaceRotationalFreedom.Nothing 
+                == CWRotationInterfaceRotationalFreedom.Nothing
                 ? 0 : 1;
         }
 
@@ -162,7 +162,7 @@ public class CWCreatureController : MonoBehaviour {
 
     private void CalculateFitness() {
 
-        if (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().fitnessFunctionType 
+        if (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().fitnessFunctionType
             == CWTrainingConfiguration.CWTrainingFitnessFunctionType.alsoPunishX) {
             this.Fitness += Time.deltaTime;
         }
@@ -173,13 +173,17 @@ public class CWCreatureController : MonoBehaviour {
 
         switch (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().fitnessFunctionType) {
 
+            case CWTrainingConfiguration.CWTrainingFitnessFunctionType.zPosOnly:
+                this.Fitness = 1 + avgPosXZ.z;
+                break;
+
             case CWTrainingConfiguration.CWTrainingFitnessFunctionType.alsoPunishX:
 
                 float absAvgPosZ = Math.Abs(avgPosXZ.z);
 
                 this.Fitness += avgVelXZ.z * Time.deltaTime;
-                this.Fitness += absAvgPosZ * Time.deltaTime - Math.Abs(avgPosXZ.x) 
-                    * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f * Time.deltaTime;
+                this.Fitness += absAvgPosZ * Time.deltaTime;
+                this.Fitness -= Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f * Time.deltaTime;
 
                 if (avgPosXZ.z < -0.2f) {
                     this.Fitness -= 10 * Time.deltaTime;
@@ -187,10 +191,6 @@ public class CWCreatureController : MonoBehaviour {
 
                 this.Fitness -= (float)Math.Pow(Math.Abs(this.angleBodyForward), 2) * 10 * Time.deltaTime;
 
-                break;
-
-            case CWTrainingConfiguration.CWTrainingFitnessFunctionType.zPosOnly:
-                this.Fitness = 1 + avgPosXZ.z;
                 break;
         }
     }
@@ -211,7 +211,7 @@ public class CWCreatureController : MonoBehaviour {
         float normalizedAngle = angleTweenAvgVAndForward / 180f;
         this.Inputs[this.sensorIndex++] = normalizedAngle;
 
-        float angleTweenBodyAndForward = 
+        float angleTweenBodyAndForward =
             Vector3.SignedAngle(this.body.transform.forward, Vector3.forward, Vector3.forward) / 180f;
 
         this.angleBodyForward = angleTweenBodyAndForward;
