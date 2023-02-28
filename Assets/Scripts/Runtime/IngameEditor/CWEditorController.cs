@@ -76,10 +76,6 @@ public class CWEditorController : MonoBehaviour {
         this.editorState = CWEditorState.Navigating;
 
         Cursor.lockState = this.lockMouse ? CursorLockMode.Locked : CursorLockMode.None;
-
-        //Camera.main = this.mainCamera;
-
-        //this.transformGizmo.
     }
 
     void Update() {

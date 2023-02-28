@@ -50,11 +50,6 @@ public class CWCreatureController : MonoBehaviour {
     private bool useDelinearized = false;
     private float angleBodyForward;
 
-    //private CWCreatureControllerInputMode inputMode = CWCreatureControllerInputMode.Minimalistic;
-    //private CWCreatureControllerInputMode inputMode = CWCreatureControllerInputMode.Experimental;
-    private CWCreatureControllerInputMode inputMode = CWCreatureControllerInputMode.ForcesApproach;
-
-
     private Vector3 bodyStartPos;
     private Vector3 totalCoM;
 
@@ -73,45 +68,27 @@ public class CWCreatureController : MonoBehaviour {
 
         SetupBodyParts();
 
-        switch (this.inputMode) {
+        int amountMovableBodyParts = 0;
 
-            case CWCreatureControllerInputMode.Minimalistic:
+        for (int bodyIndex = 0; bodyIndex < this.bodyParts.Length; bodyIndex++) {
 
-                CWCreatureController.inputs = (this.body == null ? 0 : 1) + this.bodyParts.Length * 1;
-                break;
-
-            case CWCreatureControllerInputMode.Experimental:
-
-                CWCreatureController.inputs = (this.body == null ? 0 : 1) + this.bodyParts.Length * 1 + 4 + 3;
-                break;
-            case CWCreatureControllerInputMode.ForcesApproach:
-
-                int amountMovableBodyParts = 0;
-
-                for (int bodyIndex = 0; bodyIndex < this.bodyParts.Length; bodyIndex++) {
-                    amountMovableBodyParts += this.m_JdController.bodyPartsDict[this.bodyParts[bodyIndex]].rotationalFreedom == CWRotationInterfaceRotationalFreedom.Nothing ? 0 : 1;
-                }
-
-
-                CWCreatureController.inputs = amountMovableBodyParts * 3 + 7;
-                break;
-
-            default:
-                break; ;
+            amountMovableBodyParts +=
+                this.m_JdController.bodyPartsDict[this.bodyParts[bodyIndex]].rotationalFreedom
+                == CWRotationInterfaceRotationalFreedom.Nothing 
+                ? 0 : 1;
         }
+
+        CWCreatureController.inputs = amountMovableBodyParts * 3 + 7;
 
 
         this.Inputs = new float[CWCreatureController.inputs];
-
         //int outputs gets counted up in SetupBodyParts
         this.Outputs = new float[CWCreatureController.outputs];
 
-        this.creatureBrain = this.GetComponent<CWCreatureBrain>();
 
+        this.creatureBrain = this.GetComponent<CWCreatureBrain>();
         this.creatureBrain.Init();
 
-
-        //this.m_JdController.bodyPartsDict[this.body].rb.inertiaTensor = new Vector3(0.1f, 0.01f, 0.1f);
 
         this.m_JdController.bodyPartsDict[this.body].rb.ResetInertiaTensor();
 
@@ -120,8 +97,6 @@ public class CWCreatureController : MonoBehaviour {
         if (this.maxDistanceToCOM == 0) {
             this.EstimateMaxDistanceToCOM();
         }
-
-        //Debug.Log(Formulas.ActivationFunction(-1.419f, 1, true));
     }
 
     private void SetupBodyParts() {
@@ -137,9 +112,11 @@ public class CWCreatureController : MonoBehaviour {
         foreach (ConfigurableJoint joint in joints) {
 
             if (joint.transform != this.body) {
+
                 tempBodyParts.Add(joint.transform);
-                //+1 for strength!
-                CWCreatureController.outputs += this.m_JdController.SetupBodyPart(joint.transform); // + 1 for strength
+
+                //SetupBodyPart returns the amount of rotatable axis'
+                CWCreatureController.outputs += this.m_JdController.SetupBodyPart(joint.transform);
             }
         }
 
@@ -171,20 +148,8 @@ public class CWCreatureController : MonoBehaviour {
             this.Death = false;
         }
 
-        switch (this.inputMode) {
-            case CWCreatureControllerInputMode.Minimalistic:
-                this.InputInputsMinimalistic();
-                break;
-            case CWCreatureControllerInputMode.Experimental:
-                this.InputInputsExperimental();
-                break;
-            case CWCreatureControllerInputMode.ForcesApproach:
-                this.InputInputsForcesApproach();
-                break;
-            default:
-                break;
-        }
 
+        this.InputInputs();
 
         if (this.Fitness < 0 || (this.timeSinceStart > this.maxWaveTime)) {
             this.Death = true;
@@ -197,7 +162,8 @@ public class CWCreatureController : MonoBehaviour {
 
     private void CalculateFitness() {
 
-        if (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().fitnessFunctionType == CWTrainingConfiguration.CWTrainingFitnessFunctionType.alsoPunishX) {
+        if (CWTrainingManagerDataCollector.instance.GetCurrentTrainingConfiguration().fitnessFunctionType 
+            == CWTrainingConfiguration.CWTrainingFitnessFunctionType.alsoPunishX) {
             this.Fitness += Time.deltaTime;
         }
 
@@ -209,36 +175,29 @@ public class CWCreatureController : MonoBehaviour {
 
             case CWTrainingConfiguration.CWTrainingFitnessFunctionType.alsoPunishX:
 
-                //this.LifeTime += (avgPosXZ.z > 0 ? Mathf.Pow(avgPosXZ.z, 2) : 0) * 10 * Time.deltaTime;
-                //this.LifeTime += (avgPosXZ.z > 0 ? avgPosXZ.z : 0) * 10 * Time.deltaTime;
-                //this.LifeTime += avgVelXZ.z * Time.deltaTime;  /*> 0 ? this.GetAvgVelocity().z * 10 * Time.deltaTime : 0*/;
-
                 float absAvgPosZ = Math.Abs(avgPosXZ.z);
 
-                //this.LifeTime -= Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 5) * Time.deltaTime;
-                // this.Fitness = 1 + absAvgPosZ - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f;
-
                 this.Fitness += avgVelXZ.z * Time.deltaTime;
-                this.Fitness += absAvgPosZ * Time.deltaTime - Math.Abs(avgPosXZ.x) * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f * Time.deltaTime;
+                this.Fitness += absAvgPosZ * Time.deltaTime - Math.Abs(avgPosXZ.x) 
+                    * Mathf.Clamp(absAvgPosZ, 0, 10) * 0.1f * Time.deltaTime;
 
                 if (avgPosXZ.z < -0.2f) {
                     this.Fitness -= 10 * Time.deltaTime;
                 }
 
                 this.Fitness -= (float)Math.Pow(Math.Abs(this.angleBodyForward), 2) * 10 * Time.deltaTime;
+
                 break;
+
             case CWTrainingConfiguration.CWTrainingFitnessFunctionType.zPosOnly:
                 this.Fitness = 1 + avgPosXZ.z;
                 break;
         }
     }
 
-    //this.LifeTime -= Mathf.Pow(Math.Abs(this.GetAvgPosition().x / 10), 2) * Time.deltaTime;
-    //this.LifeTime -= Math.Abs(this.GetAvgVelocity().x) * Time.deltaTime;
 
 
-
-    private void InputInputsForcesApproach() {
+    private void InputInputs() {
 
         Vector3 avgVel = this.GetAvgVelocity();
 
@@ -246,19 +205,21 @@ public class CWCreatureController : MonoBehaviour {
         this.Inputs[this.sensorIndex++] = (float)Math.Tanh(avgVel.y);
         this.Inputs[this.sensorIndex++] = (float)Math.Tanh(avgVel.z);
 
-        float angleTweenAvgVAndForward = Vector3.SignedAngle(avgVel, Vector3.forward, Vector3.forward);
-        float normalizedAngle = angleTweenAvgVAndForward / 180f;
+        float angleTweenAvgVAndForward =
+            Vector3.SignedAngle(avgVel, Vector3.forward, Vector3.forward);
 
-        //this.Inputs[this.sensorIndex++] = Vector3.Dot(Vector3.forward, )
+        float normalizedAngle = angleTweenAvgVAndForward / 180f;
         this.Inputs[this.sensorIndex++] = normalizedAngle;
 
-        float angleTweenBodyAndForward = Vector3.SignedAngle(this.body.transform.forward, Vector3.forward, Vector3.forward) / 180f;
+        float angleTweenBodyAndForward = 
+            Vector3.SignedAngle(this.body.transform.forward, Vector3.forward, Vector3.forward) / 180f;
+
         this.angleBodyForward = angleTweenBodyAndForward;
+        this.Inputs[this.sensorIndex++] = angleTweenBodyAndForward;
 
         this.Inputs[this.sensorIndex++] = Vector3.Dot(Vector3.forward, body.forward);
         this.Inputs[this.sensorIndex++] = Vector3.Dot(Vector3.up, body.forward);
 
-        this.Inputs[this.sensorIndex++] = angleTweenBodyAndForward;
 
         this.totalCoM = this.GetTotalCoM();
 
@@ -272,83 +233,6 @@ public class CWCreatureController : MonoBehaviour {
         this.sensorIndex = 0;
     }
 
-
-
-    private void InputInputsMinimalistic() {
-
-        this.CollectObservationBodyPartMinimalistic(this.m_JdController.bodyPartsDict[this.body]);
-
-        for (int partIndex = 0; partIndex < this.bodyParts.Length; partIndex++) {
-            this.CollectObservationBodyPartMinimalistic(this.m_JdController.bodyPartsDict[this.bodyParts[partIndex]]);
-        }
-
-        this.sensorIndex = 0;
-    }
-
-
-
-    private void InputInputsExperimental() {
-
-        //Quaternion localForwardToWorldForward = Quaternion.FromToRotation(this.body.forward, Vector3.forward);
-
-        //this.Inputs[this.sensorIndex++] = localForwardToWorldForward.x;
-        //this.Inputs[this.sensorIndex++] = localForwardToWorldForward.y;
-        //this.Inputs[this.sensorIndex++] = localForwardToWorldForward.z;
-        //this.Inputs[this.sensorIndex++] = localForwardToWorldForward.w;
-
-        Vector3 avgVelocity = this.GetAvgVelocity();
-
-
-
-        if (avgVelocity.magnitude > 10) {
-            Debug.Log("avgVelocity.magnitude> 10");
-        }
-
-        //this.Inputs[this.sensorIndex++] = avgVelocity.magnitude;
-
-        Vector3 avgPos = this.GetAvgPosition();
-
-        Vector3 bodyDiff = this.body.position - avgPos;
-
-        this.Inputs[this.sensorIndex++] = (float)Math.Tanh(bodyDiff.x * 10);
-        this.Inputs[this.sensorIndex++] = (float)Math.Tanh(bodyDiff.y * 10);
-        this.Inputs[this.sensorIndex++] = (float)Math.Tanh(bodyDiff.z * 10);
-
-
-        this.Inputs[this.sensorIndex++] = (float)Math.Tanh(avgVelocity.x);
-        //this.Inputs[this.sensorIndex++] = avgVelocity.y;
-        this.Inputs[this.sensorIndex++] = (float)Math.Tanh(avgVelocity.z);
-
-        if (!this.fitnessSetToZPosOnly) {
-            //this.LifeTime -= Mathf.Abs(avgVelocity.x) * 2 * Time.deltaTime;
-        }
-
-        float angleTweenAvgVAndForward = Vector3.SignedAngle(avgVelocity, Vector3.forward, Vector3.forward);
-        float normalizedAngle = angleTweenAvgVAndForward / 180f;
-
-        this.Inputs[this.sensorIndex++] = normalizedAngle;
-
-        if (!this.fitnessSetToZPosOnly) {
-            //this.LifeTime -= Mathf.Abs(normalizedAngle) * Time.deltaTime;
-        }
-
-        float angleTweenBodyAndForward = Vector3.SignedAngle(this.body.transform.forward, Vector3.forward, Vector3.forward) / 180f;
-        this.angleBodyForward = angleTweenBodyAndForward;
-        this.Inputs[this.sensorIndex++] = angleTweenBodyAndForward;
-
-        //this.LifeTime -= Mathf.Abs(angleTweenBodyAndForward) * 0.25f * Time.deltaTime;
-
-
-
-
-        this.CollectObservationBodyPart(this.m_JdController.bodyPartsDict[this.body]);
-
-        for (int partIndex = 0; partIndex < this.bodyParts.Length; partIndex++) {
-            this.CollectObservationBodyPart(this.m_JdController.bodyPartsDict[this.bodyParts[partIndex]]);
-        }
-
-        this.sensorIndex = 0;
-    }
 
     public Vector3 GetTotalCoM() {
 
@@ -440,29 +324,7 @@ public class CWCreatureController : MonoBehaviour {
     }
 
 
-    private void CollectObservationBodyPartMinimalistic(BodyPart bodyPart) {
-
-        if (this.useDelinearized) {
-            this.Inputs[this.sensorIndex++] = Formulas.ActivationFunction((this.body.position.y - bodyPart.rb.transform.position.y) * 5, 1, true);
-            return;
-        }
-
-        this.Inputs[this.sensorIndex++] = (bodyPart.rb.transform.position.y - 0.8f) * 2.5f;// (this.body.position.y - bodyPart.rb.transform.position.y) * 2;
-    }
-
-
     public void CollectObservationBodyPart(BodyPart bodyPart) {
-
-        //this.Inputs[this.sensorIndex++] = bodyPart.groundContact.touchingGround ? 1f : -1f;
-        //this.Inputs[this.sensorIndex++] = bodyPart.groundContact.touchingGround ? -1f : -1f + bodyPart.rb.transform.position.y;
-        /*
-        if (this.Inputs[this.sensorIndex] == 0) {
-            // Debug.Log(bodyPart.rb.gameObject.name);
-            //Debug.Log(this.sensorIndex);
-        }
-        */
-
-        //this.Inputs[this.sensorIndex++] = bodyPart.rb.angularVelocity.x / 180f;
 
         if (bodyPart.rb.transform == this.body) {
 
@@ -489,55 +351,9 @@ public class CWCreatureController : MonoBehaviour {
         }
 
         this.Inputs[this.sensorIndex++] = (this.body.position.y - bodyPart.rb.transform.position.y);
-
-        //this.Inputs[this.sensorIndex++] = bodyPart.rb.transform.position.y / 10f;
-
     }
 
-    void OnDrawGizmos() {
 
-        /*
-        foreach (BodyPart bodyPart in this.m_JdController.bodyPartsList) {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(bodyPart.rb.transform.position, 0.2f);
-        }
-        */
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.totalCoM, 0.3f);
-    }
-
-    //bad inputs:
-
-    //this.Inputs[this.sensorIndex++] = bodyPart.currentXNormalizedRot;
-    //this.Inputs[this.sensorIndex++] = bodyPart.currentYNormalizedRot;
-    //this.Inputs[this.sensorIndex++] = bodyPart.rb.transform.position.y;
-    //this.Inputs[this.sensorIndex++] = bodyPart.rb.velocity.x;
-    //this.Inputs[this.sensorIndex++] = bodyPart.rb.velocity.y;
-    //this.Inputs[this.sensorIndex++] = bodyPart.rb.velocity.z;
-
-
-    // doesn't yield good results:
-    //this.Inputs[this.sensorIndex++] = this.timeSinceStart / 10;
-
-    //RaycastHit hit;
-    //if (Physics.Raycast(this.body.position, Vector3.down, out hit, 10)) {
-    //    this.Inputs[this.sensorIndex++] = hit.distance / 10;
-    //}
-    //else
-    //    this.Inputs[this.sensorIndex++] = 1;
-
-    //Vector3 avgVelocity = this.GetAvgVelocity();
-
-
-    //this.Inputs[this.sensorIndex++] = avgVelocity.x;
-    //this.Inputs[this.sensorIndex++] = avgVelocity.y;
-    //this.Inputs[this.sensorIndex++] = avgVelocity.z;
-
-    //if (bodyPart.rb.transform != this.body) {
-    //    this.Inputs[this.sensorIndex++] = bodyPart.currentStrength / this.m_JdController.maxJointForceLimit;
-    //}
-    //this.Inputs[this.sensorIndex++] = bodyPart.currentZNormalizedRot;
 
     public Vector3 GetAvgPosition() {
         Vector3 posSum = Vector3.zero;
@@ -601,10 +417,7 @@ public class CWCreatureController : MonoBehaviour {
                     break;
             }
 
-
-            //bpDict[this.bodyParts[partIndex]].SetJointStrength(this.Outputs[i++]);
             bpDict[this.bodyParts[partIndex]].SetJointStrength(0);
-
         }
     }
 }
