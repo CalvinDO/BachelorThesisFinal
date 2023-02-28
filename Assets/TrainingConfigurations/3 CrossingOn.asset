@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3 CrossingOn
   m_EditorClassIdentifier: 
   inputType: 0
-  delinearizationType: 1
+  delinearizationType: 0
   hyperparameterType: 1
   fitnessFunctionType: 0
   outputType: 0

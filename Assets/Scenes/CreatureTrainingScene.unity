@@ -2566,9 +2566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainingConfigurations:
-  - {fileID: 11400000, guid: 7cc52789b7b0b7249a880174c9680cc6, type: 2}
-  - {fileID: 11400000, guid: c87f5efaeedb44c48b843e2b7a8a3e47, type: 2}
-  - {fileID: 11400000, guid: 260021706a0fc7b438f752b02b6dd1f1, type: 2}
   - {fileID: 11400000, guid: b46a8ed64ad1c184e8deb9f5f31044e0, type: 2}
   - {fileID: 11400000, guid: 46abba674b926654799e4dd0d9b2ed9a, type: 2}
   creatures:
@@ -2577,7 +2574,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 44e335a62ec26964ea04a1977695032c, type: 3}
   - {fileID: 4900000, guid: b9dd09a3d8d36bd4590fc66e96ef4e96, type: 3}
   - {fileID: 4900000, guid: 492126a338fdcd94ba9fea481b9bac6b, type: 3}
-  amountBatchesPerCreature: 1
+  amountBatchesPerCreature: 5
   batchTime: 300
   currentConfigurationIndex: 0
   currentCreatureIndex: 0

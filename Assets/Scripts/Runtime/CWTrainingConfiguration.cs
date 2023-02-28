@@ -17,12 +17,6 @@ public class CWTrainingConfiguration : ScriptableObject {
     }
 
     [Serializable]
-    public enum CWTrainingOutputType {
-        anglesOnly = 0,
-        anglesWithForces = 1
-    }
-
-    [Serializable]
     public enum CWTrainingDelinearizationType {
         tanh = 0,
         none = 1
@@ -44,5 +38,4 @@ public class CWTrainingConfiguration : ScriptableObject {
     public CWTrainingDelinearizationType delinearizationType;
     public CWTrainingHyperparameterType hyperparameterType;
     public CWTrainingFitnessFunctionType fitnessFunctionType;
-    public CWTrainingOutputType outputType;
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4 AlsoPunishX
   m_EditorClassIdentifier: 
   inputType: 0
-  delinearizationType: 1
+  delinearizationType: 0
   hyperparameterType: 0
   fitnessFunctionType: 1
   outputType: 0

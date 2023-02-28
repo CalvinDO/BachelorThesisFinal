@@ -23,9 +23,7 @@ public class CrawlerLearner : MonoBehaviour {
 
         this.networkLearnInterface = gameObject.AddComponent<ANNLearnByNEATInterface>();
         this.networkLearnInterface.Ann = creatureBrain.Network;
-        //Debug.Log(this.networkLearnInterface.s)
         this.networkLearnInterface.NL.AmountOfChildren = 13;
-        //this.networkLearnInterface.NL.ChildrenByWave = false;
         this.networkLearnInterface.NL.ChildrenInWave = 13;
         this.networkLearnInterface.NL.ChanceCoefficient = 0.04f;
         this.networkLearnInterface.NL.ChangeWeightSign = 0.25f;
@@ -40,6 +38,7 @@ public class CrawlerLearner : MonoBehaviour {
         this.networkLearnInterface.NL.MutationChangeOneWeight = 27.51f / 1.25f;
         this.networkLearnInterface.NL.MutationChangeWeights = 22.73f / 1.25f;
         this.networkLearnInterface.NL.MutationAddNeuron = 31.82f / 1.25f;
+
         this.networkLearnInterface.NL.StudentData(creatureBrain.gameObject, creatureBrain, nameof(this.creatureBrain.Network), creatureController, nameof(this.creatureController.Death), nameof(this.creatureController.Fitness));
     }
 
