@@ -2577,13 +2577,13 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 44e335a62ec26964ea04a1977695032c, type: 3}
   - {fileID: 4900000, guid: b9dd09a3d8d36bd4590fc66e96ef4e96, type: 3}
   - {fileID: 4900000, guid: 492126a338fdcd94ba9fea481b9bac6b, type: 3}
-  amountBatchesPerCreature: 5
+  amountBatchesPerCreature: 1
   batchTime: 300
   currentConfigurationIndex: 0
   currentCreatureIndex: 0
   currentBatchIndex: 0
   tempWavesMaxDistances: []
-  testConfigurations: 0
+  testConfigurations: 1
 --- !u!1 &5793648530182810670
 GameObject:
   m_ObjectHideFlags: 0

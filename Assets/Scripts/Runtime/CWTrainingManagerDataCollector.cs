@@ -173,7 +173,7 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
     }
 
     private void SaveCreatureBrain() {
-        ANNLearnByNEATInterface.instance.Ann.Save("Creature" + this.currentCreatureIndex + "Batch" + this.currentBatchIndex);
+        ANNLearnByNEATInterface.instance.Ann.Save("Config" + this.GetCurrentTrainingConfiguration().name + "Creature" + this.currentCreatureIndex + "Batch" + this.currentBatchIndex);
     }
 
     public void WriteTempBatchDataToResults() {
@@ -207,8 +207,6 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
     public void ResetScene() {
 
         ANNLearnByNEAT.instance.Reset();
-
-
 
 
         Destroy(CWTrainingSceneManager.initialCreature.gameObject);
