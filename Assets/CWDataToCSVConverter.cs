@@ -10,7 +10,7 @@ public class CWDataToCSVConverter : MonoBehaviour {
     public TextAsset savedData;
     private CWTrainingDataResults deserializedTrainingResults;
 
-
+    private string minMaxes = "";
 
     void Start() {
 
@@ -36,6 +36,8 @@ public class CWDataToCSVConverter : MonoBehaviour {
         string currentPath = Application.dataPath + "/TrainingResults/" + "FormattedTrainingResults" + ".csv";
 
         File.WriteAllText(currentPath, generatedCSV);
+
+        Debug.Log(this.minMaxes);
     }
 
     private string GetCSV() {
@@ -43,6 +45,8 @@ public class CWDataToCSVConverter : MonoBehaviour {
         string output = "";
 
         foreach (CWTrainingConfigurationResultsData configResult in this.deserializedTrainingResults.configurationsResults) {
+            this.minMaxes += " \n" + configResult.configurationName + " \n";
+
             foreach (CWTrainingCreatureResultsData creatureResult in configResult.creatureResults) {
 
                 output += this.GetAvarageOfBatchWinners(creatureResult);
@@ -59,14 +63,18 @@ public class CWDataToCSVConverter : MonoBehaviour {
 
     private float GetAvarageOfBatchWinners(CWTrainingCreatureResultsData creatureResult) {
 
+        this.minMaxes += " "+ " ";
+
         List<float> winners = new List<float>();
 
         foreach (CWTrainingBatchData batchResult in creatureResult.batchResults) {
 
+
             float currentWinner = batchResult.wavesMaxDistances.Max();
-            Debug.Log(currentWinner);
             winners.Add(currentWinner);
         }
+
+        this.minMaxes += " " + (winners.Max() - winners.Min()).ToString("#.000");
 
         return winners.Average();
     }

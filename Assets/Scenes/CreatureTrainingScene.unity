@@ -2566,6 +2566,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainingConfigurations:
+  - {fileID: 11400000, guid: 7cc52789b7b0b7249a880174c9680cc6, type: 2}
+  - {fileID: 11400000, guid: c87f5efaeedb44c48b843e2b7a8a3e47, type: 2}
+  - {fileID: 11400000, guid: 260021706a0fc7b438f752b02b6dd1f1, type: 2}
   - {fileID: 11400000, guid: b46a8ed64ad1c184e8deb9f5f31044e0, type: 2}
   - {fileID: 11400000, guid: 46abba674b926654799e4dd0d9b2ed9a, type: 2}
   creatures:

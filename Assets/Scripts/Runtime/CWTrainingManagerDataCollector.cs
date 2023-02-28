@@ -49,6 +49,8 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
 
     private CWTrainingDataResults trainingDataResults;
 
+    public static bool copyConfigIndexFromPreset = false;
+    public static int presetConfigIndex;
 
     public int currentConfigurationIndex = 0;
     public int currentCreatureIndex = 0;
@@ -62,6 +64,10 @@ public class CWTrainingManagerDataCollector : MonoBehaviour {
 
     void Awake() {
         CWTrainingManagerDataCollector.instance = this;
+
+        if (CWTrainingManagerDataCollector.copyConfigIndexFromPreset) {
+            this.currentConfigurationIndex = CWTrainingManagerDataCollector.presetConfigIndex;
+        }
     }
 
     void Update() {

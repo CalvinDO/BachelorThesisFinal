@@ -66,6 +66,7 @@ public class CWEditorController : MonoBehaviour {
     public CWEditorDockingBall currentBuildingDockingBall;
     public Transform currentBuildingDockingPoint;
 
+    public TMP_InputField configIndexInput;
 
     void Awake() {
         CWEditorController.instance = this;
@@ -345,9 +346,26 @@ public class CWEditorController : MonoBehaviour {
 
         this.editorIsClosing = true;
 
+        this.PresetConfigurationIndex();
+
         GameObject physicalCreature = CWEditorPhysicalCreatureFactory.GetPhysicalCreature(this.startingLimb);
 
         this.SwitchScene(physicalCreature);
+    }
+
+    private void PresetConfigurationIndex() {
+        try {
+            CWTrainingManagerDataCollector.presetConfigIndex = int.Parse(this.configIndexInput.text);
+
+            if (CWTrainingManagerDataCollector.instance.currentConfigurationIndex < 0 || CWTrainingManagerDataCollector.instance.currentConfigurationIndex > 4) {
+                throw new Exception("index out of range");
+            }
+
+            CWTrainingManagerDataCollector.copyConfigIndexFromPreset = true;
+        }
+        catch (Exception e) {
+            CWTrainingManagerDataCollector.copyConfigIndexFromPreset = false;
+        }
     }
 
     public void OnClickSave() {
