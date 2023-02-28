@@ -393,7 +393,6 @@ public class CWCreatureController : MonoBehaviour {
             if (bodyPart.rb.transform.up.y < 0) {
                 this.Fitness -= float.MaxValue;
             }
-
             return;
         }
 
@@ -406,7 +405,6 @@ public class CWCreatureController : MonoBehaviour {
             case CWTrainingConfiguration.CWTrainingInputType.comDistances:
 
                 Vector3 distanceToCoM = bodyPart.rb.transform.position - this.totalCoM;
-
                 Vector3 sizeRelativeDistanceToCOM = distanceToCoM / this.maxDistanceToCOM;
 
                 this.Inputs[this.sensorIndex++] = tanH(sizeRelativeDistanceToCOM.x);
@@ -417,24 +415,13 @@ public class CWCreatureController : MonoBehaviour {
                 break;
             case CWTrainingConfiguration.CWTrainingInputType.rotationalFactor:
 
-                //Vector3 avgVel = this.GetAvgVelocity();
-                //Vector3 differenceVel = bodyPart.rb.velocity - this.m_JdController.bodyPartsDict[this.body].rb.velocity;
-
-
                 this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentXNormalizedRot);
                 this.Inputs[this.sensorIndex++] = tanH(bodyPart.currentYNormalizedRot);
 
                 this.Inputs[this.sensorIndex++] = tanH(bodyPart.rb.transform.position.y / this.maxDistanceToCOM);
 
-                //this.Inputs[this.sensorIndex++] = tanH(differenceVel.x / this.maxDistanceToCOM);
-                //this.Inputs[this.sensorIndex++] = tanH(differenceVel.y / this.maxDistanceToCOM);
-                //this.Inputs[this.sensorIndex++] = tanH(differenceVel.z / this.maxDistanceToCOM);
-
                 break;
         }
-
-
-        
     }
 
     private float tanH(float value) {
